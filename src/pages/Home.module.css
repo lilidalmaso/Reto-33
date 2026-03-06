@@ -202,8 +202,8 @@
   .shapes { position: relative !important; inset: auto !important; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important; gap: 2rem !important; padding: 0.5rem 0; overflow: visible !important; }
   .shape { position: relative !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; }
   .shapeCircle { width: 55px !important; height: 55px !important; border-width: 2px !important; opacity: 1 !important; }
-  .shapeTriangle { width: 55px !important; height: 49px !important; opacity: 1 !important; }
-  .shapeSquare { width: 38px !important; height: 38px !important; border-width: 2px !important; opacity: 1 !important; }
+  .shapeTriangle { width: 55px !important; height: 55px !important; opacity: 1 !important; }
+  .shapeSquare { width: 55px !important; height: 55px !important; border-width: 2px !important; opacity: 1 !important; }
 
   /* Image chica plus large sur mobile */
   .heroImage { width: 70%; opacity: 1; mask-image: linear-gradient(to left, rgba(0,0,0,1) 5%, transparent 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 5%, transparent 100%); }
