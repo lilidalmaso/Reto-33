@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import styles from './Home.module.css'
-import imgChica from '/chica.webp'
 import imgRelo from '/relo.webp'
 import imgNumeros from '/numeros.webp'
 import imgLibro from '/libro.webp'
@@ -63,14 +62,14 @@ function Home() {
 
       {/* HERO */}
       <section className={styles.hero}>
-        <img src={imgChica} alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" />
+        <img src="/Reto-33/chica.webp" alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" />
         <div className={styles.shapes} aria-hidden="true">
           <div className={`${styles.shape} ${styles.shapeCircle}`} />
           <div className={`${styles.shape} ${styles.shapeTriangle}`} />
           <div className={`${styles.shape} ${styles.shapeSquare}`} />
         </div>
         <div className={`container ${styles.heroInner}`}>
-          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Cupones Limitados</p>
+          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Cupos Limitados</p>
           <h1 className={styles.heroTitle}>
             Transforma tu vida<br />
             en <span className={styles.gold}>33 días</span>
@@ -80,7 +79,7 @@ function Home() {
             Únete al próximo ciclo y descubre todo lo que eres capaz de lograr.
           </p>
           <div className={styles.heroCta}>
-            <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi cupon →</a>
+            <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi cupo →</a>
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('program') }} className={styles.btnGhost}>Conocer el programa</a>
           </div>
           <div className={styles.heroStats}>
@@ -97,7 +96,7 @@ function Home() {
       {/* URGENCIA */}
       <div className={styles.urgency}>
         <span className={styles.urgencyDot} />
-        El próximo ciclo arranca en <strong> 7 días</strong> — Solo quedan <strong> 12 cupones</strong> disponibles
+        El próximo ciclo arranca en <strong> 7 días</strong> — Solo quedan <strong> 12 cupos</strong> disponibles
       </div>
 
       {/* PROBLEMA */}
@@ -210,7 +209,7 @@ function Home() {
           <h2 className={styles.sectionTitle}>Una sola oferta,<br /><span className={styles.gold}>todo incluido</span></h2>
           <div className={styles.pricingWrapper}>
             <div className={styles.pricingCard}>
-              <div className={styles.pricingBadge}>Cupones Limitados</div>
+              <div className={styles.pricingBadge}>Cupos Limitados</div>
               <p className={styles.pricingName}>Reto 33 Completo</p>
               <div className={styles.pricingPrice}>
                 <span className={styles.pricingAmount}>55</span>
@@ -241,7 +240,7 @@ function Home() {
               <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary} style={{ display: 'block', textAlign: 'center', marginTop: '2rem' }}>
                 Me uno al programa →
               </a>
-              <p className={styles.pricingGuarantee}>🔒 Garantía de 7 días sin condiciones</p>
+              <p className={styles.pricingGuarantee}>🔒 Pago seguro · Garantía de 30 días sin condiciones</p>
             </div>
           </div>
         </div>
@@ -267,7 +266,7 @@ function Home() {
           <img src={imgInfinito} alt="Infinito" className={styles.ctaImage} />
           <h2 className={styles.ctaTitle}>En 33 días,<br />todo puede cambiar</h2>
           <p className={styles.ctaSub}>La única diferencia entre donde estás hoy y donde quieres estar es la decisión que tomas en este momento. No la sigas aplazando.</p>
-          <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Quiero mi cupon ahora →</a>
+          <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Quiero mi cupo ahora →</a>
           <p className={styles.ctaNote}>Garantía de devolución a 30 días · Acceso inmediato</p>
           <div className={styles.ctaShapes}>
             <svg className={`${styles.ctaShape} ${styles.ctaShapeGold}`} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
