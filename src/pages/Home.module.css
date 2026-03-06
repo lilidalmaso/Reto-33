@@ -184,25 +184,25 @@
   .sectionWithImage, .sectionWithImageReverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
   .sectionImage { max-width: 100%; }
 
-  /* Hero — même structure, tout réduit */
-  .hero { padding: 6rem 0 4rem; }
-  .heroInner { width: 55%; }
-  .heroTitle { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 0.8rem; text-align: left; }
-  .heroSub { font-size: 0.8rem; margin-bottom: 1.5rem; line-height: 1.6; text-align: left; }
-  .heroCta { margin-bottom: 1.5rem; gap: 0.5rem; flex-direction: column; align-items: center; width: 100%; }
-  .btnPrimary, .btnGhost { text-align: center; }
-  .btnPrimary, .btnGhost { padding: 0.65rem 1rem; font-size: 0.7rem; text-align: center; width: 90%; }
-  .heroStats { justify-content: center; gap: 0.8rem; }
-  .statNum { font-size: 1.2rem; }
-  .statLabel { font-size: 0.6rem; }
+  /* Hero pleine largeur */
+  .hero { padding: 6rem 0 3rem; }
+  .heroInner { width: 100%; max-width: 100%; text-align: center; }
+  .eyebrow { font-size: 0.65rem; margin-bottom: 0.8rem; }
+  .heroTitle { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 0.8rem; }
+  .heroSub { font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.6; max-width: 100%; }
+  .heroCta { margin-bottom: 1.5rem; gap: 0.6rem; flex-direction: column; align-items: center; width: 100%; }
+  .btnPrimary, .btnGhost { text-align: center; width: 80%; }
+  .heroStats { justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .statNum { font-size: 1.4rem; }
+  .statLabel { font-size: 0.62rem; }
   .statDivider { height: 24px; }
-  .eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; text-align: left; }
 
-  /* Formes — réduites proportionnellement */
-  /* Cercle en haut, triangle pointe dans le cercle, carré chevauche bas triangle */
-  .shapeCircle { width: 150px; height: 150px; top: 220px; right: 4%; border-width: 3px; }
-  .shapeTriangle { width: 170px; height: 152px; top: 358px; right: 2%; }
-  .shapeSquare { width: 70px; height: 70px; top: calc(358px + 152px - 18px); right: calc(2% + 50px); border-width: 3px; }
+  /* Formes — ligne horizontale sous les stats */
+  .shapes { position: relative !important; inset: auto !important; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important; gap: 2rem !important; padding: 0.5rem 0; overflow: visible !important; }
+  .shape { position: relative !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; }
+  .shapeCircle { width: 55px !important; height: 55px !important; border-width: 2px !important; opacity: 1 !important; }
+  .shapeTriangle { width: 55px !important; height: 49px !important; opacity: 1 !important; }
+  .shapeSquare { width: 38px !important; height: 38px !important; border-width: 2px !important; opacity: 1 !important; }
 
   /* Pricing */
   .pricingCard { padding: 1.8rem 1.4rem; }
