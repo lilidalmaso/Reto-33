@@ -6,6 +6,11 @@ import imgNumeros from '/numeros.webp'
 import imgLibro from '/libro.webp'
 import imgInfinito from '/infinito.webp'
 
+function scrollTo(id) {
+  const el = document.getElementById(id)
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
+}
+
 const benefits = [
   { icon: '📅', title: '5 Clases en Vivo', desc: "Sesiones en directo donde aprenderás, preguntarás y avanzarás con acompañamiento real en cada etapa del reto." },
   { icon: '🗓️', title: '33 Días de Reto Diario', desc: "Un desafío diario estructurado durante 33 días para construir hábitos poderosos que transformen tu vida de adentro hacia afuera." },
@@ -75,8 +80,8 @@ function Home() {
             Únete al próximo ciclo y descubre todo lo que eres capaz de lograr.
           </p>
           <div className={styles.heroCta}>
-            <a href="#pricing" className={styles.btnPrimary}>Quiero mi cupo →</a>
-            <a href="#program" className={styles.btnGhost}>Conocer el programa</a>
+            <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi cupo →</a>
+            <a href="#" onClick={e => { e.preventDefault(); scrollTo('program') }} className={styles.btnGhost}>Conocer el programa</a>
           </div>
           <div className={styles.heroStats}>
             <div className={styles.stat}><span className={styles.statNum}>500+</span><span className={styles.statLabel}>Participantes</span></div>
@@ -263,8 +268,6 @@ function Home() {
           <p className={styles.ctaSub}>La única diferencia entre donde estás hoy y donde quieres estar es la decisión que tomas en este momento. No la sigas aplazando.</p>
           <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Quiero mi cupo ahora →</a>
           <p className={styles.ctaNote}>Garantía de devolución a 30 días · Acceso inmediato</p>
-
-          {/* Formes ○ △ □ alignées */}
           <div className={styles.ctaShapes}>
             <svg className={`${styles.ctaShape} ${styles.ctaShapeGold}`} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="30" cy="30" r="26" stroke="currentColor" strokeWidth="3"/>
