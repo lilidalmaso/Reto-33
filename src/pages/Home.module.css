@@ -19,7 +19,6 @@
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
 }
-
 /* ─── HELPERS ─────────────────────────────────────── */
 .gold { color: var(--color-gold-bright); text-shadow: 0 0 20px var(--color-gold-glow); }
 .red  { color: var(--color-red-bright);  text-shadow: 0 0 16px var(--color-red-glow); }
