@@ -187,23 +187,22 @@
   /* Hero — même structure, tout réduit */
   .hero { padding: 6rem 0 4rem; }
   .heroInner { width: 55%; }
-  .heroTitle { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 0.8rem; }
-  .heroSub { font-size: 0.8rem; margin-bottom: 1.5rem; line-height: 1.6; }
-  .heroCta { margin-bottom: 1.5rem; gap: 0.5rem; flex-direction: column; align-items: stretch; width: 100%; }
+  .heroTitle { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 0.8rem; text-align: left; }
+  .heroSub { font-size: 0.8rem; margin-bottom: 1.5rem; line-height: 1.6; text-align: left; }
+  .heroCta { margin-bottom: 1.5rem; gap: 0.5rem; flex-direction: column; align-items: center; width: 100%; }
   .btnPrimary, .btnGhost { text-align: center; }
   .btnPrimary, .btnGhost { padding: 0.65rem 1rem; font-size: 0.7rem; text-align: center; width: 90%; }
   .heroStats { justify-content: center; gap: 0.8rem; }
-  .heroStats { gap: 0.8rem; }
   .statNum { font-size: 1.2rem; }
   .statLabel { font-size: 0.6rem; }
   .statDivider { height: 24px; }
-  .eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; }
+  .eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; text-align: left; }
 
   /* Formes — réduites proportionnellement */
   /* Cercle en haut, triangle pointe dans le cercle, carré chevauche bas triangle */
-  .shapeCircle { width: 150px; height: 150px; top: 280px; right: 4%; border-width: 3px; }
-  .shapeTriangle { width: 170px; height: 152px; top: 418px; right: 2%; }
-  .shapeSquare { width: 70px; height: 70px; top: calc(418px + 152px - 18px); right: calc(2% + 50px); border-width: 3px; }
+  .shapeCircle { width: 150px; height: 150px; top: 220px; right: 4%; border-width: 3px; }
+  .shapeTriangle { width: 170px; height: 152px; top: 358px; right: 2%; }
+  .shapeSquare { width: 70px; height: 70px; top: calc(358px + 152px - 18px); right: calc(2% + 50px); border-width: 3px; }
 
   /* Pricing */
   .pricingCard { padding: 1.8rem 1.4rem; }
