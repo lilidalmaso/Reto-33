@@ -63,11 +63,6 @@ function Home() {
 
       {/* HERO */}
       <section className={styles.hero}>
-        <div className={styles.shapes} aria-hidden="true">
-          <div className={`${styles.shape} ${styles.shapeCircle}`} />
-          <div className={`${styles.shape} ${styles.shapeSquare}`} />
-          <div className={`${styles.shape} ${styles.shapeTriangle}`} />
-        </div>
         <img src={imgChica} alt="" className={styles.heroImage} aria-hidden="true" />
         <div className={`container ${styles.heroInner}`}>
           <p className={styles.eyebrow}>⬡ Programa Exclusivo — Cupos Limitados</p>
@@ -89,6 +84,11 @@ function Home() {
             <div className={styles.stat}><span className={styles.statNum}>33</span><span className={styles.statLabel}>Días</span></div>
             <div className={styles.statDivider} />
             <div className={styles.stat}><span className={styles.statNum}>97%</span><span className={styles.statLabel}>Satisfechos</span></div>
+          </div>
+          <div className={styles.shapes} aria-hidden="true">
+            <div className={`${styles.shape} ${styles.shapeCircle}`} />
+            <div className={`${styles.shape} ${styles.shapeTriangle}`} />
+            <div className={`${styles.shape} ${styles.shapeSquare}`} />
           </div>
         </div>
       </section>
