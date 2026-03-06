@@ -186,7 +186,7 @@
 
   /* Hero — même structure, tout réduit */
   .hero { padding: 6rem 0 4rem; }
-  .heroInner { max-width: 58%; }
+  .heroInner { max-width: 55%; margin-left: 0; padding-left: 0.5rem; }
   .heroTitle { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 0.8rem; }
   .heroSub { font-size: 0.8rem; margin-bottom: 1.5rem; line-height: 1.6; }
   .heroCta { margin-bottom: 1.5rem; gap: 0.5rem; }
@@ -198,9 +198,10 @@
   .eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; }
 
   /* Formes — réduites proportionnellement */
-  .shapeCircle { width: 180px; height: 180px; top: 40px; right: 2%; border-width: 3px; }
-  .shapeTriangle { width: 140px; height: 125px; top: 35%; right: 0%; }
-  .shapeSquare { width: 80px; height: 80px; top: calc(35% + 100px); right: calc(0% - 15px); border-width: 3px; }
+  /* Cercle imbriqué dans le triangle — même logique que desktop */
+  .shapeCircle { width: 160px; height: 160px; top: 55px; right: 2%; border-width: 3px; }
+  .shapeTriangle { width: 200px; height: 178px; top: 30px; right: -1%; }
+  .shapeSquare { width: 75px; height: 75px; top: calc(30px + 178px - 10px); right: calc(-1% + 60px); border-width: 3px; }
 
   /* Pricing */
   .pricingCard { padding: 1.8rem 1.4rem; }

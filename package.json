@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "ship": "vite build && gh-pages -d dist"
+    "ship": "git add . && git commit -m \"update\" && git push && vite build && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
