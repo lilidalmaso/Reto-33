@@ -27,7 +27,7 @@
 .landing { width: 100%; }
 
 /* ─── SHAPES ──────────────────────────────────────── */
-.shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
 .shape  { position: absolute; }
 .shapeCircle {
   width: 380px; height: 380px; border-radius: 50%;
@@ -40,20 +40,21 @@
 .shapeTriangle { width: 280px; height: 250px; top: 38%; right: 1%; opacity: 1; }
 .shapeTriangle::after {
   content: ''; position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 250'%3E%3Cpolygon points='140,6 274,244 6,244' fill='none' stroke='%23ff2020' stroke-width='5'/%3E%3C/svg%3E") no-repeat center / contain;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 250'%3E%3Cpolygon points='140,6 274,244 6,244' fill='none' stroke='%23ff2020' stroke-width='6'/%3E%3C/svg%3E") no-repeat center / contain;
+  filter: drop-shadow(0 0 8px #ff2020) drop-shadow(0 0 20px #ff2020) drop-shadow(0 0 50px rgba(255,32,32,0.8));
   animation: pulseRed 5s ease-in-out infinite 0.8s;
 }
 .shapeSquare {
   width: 170px; height: 170px; border: 5px solid var(--color-red-bright);
   top: calc(38% + 195px); right: 5px;
-  box-shadow: 0 0 30px var(--color-red-glow), 0 0 70px rgba(255,32,32,0.35), 0 0 130px rgba(255,32,32,0.15);
+  box-shadow: 0 0 15px #ff2020, 0 0 40px #ff2020, 0 0 80px rgba(255,32,32,0.7), 0 0 160px rgba(255,32,32,0.3);
   animation: pulseRedBox 6s ease-in-out infinite 1.8s;
   opacity: 1;
 }
 
 /* ─── HERO ────────────────────────────────────────── */
 .hero { position: relative; padding: 9rem 0 7rem; overflow: hidden; }
-.heroInner { position: relative; z-index: 2; max-width: 700px; }
+.heroInner { position: relative; z-index: 4; max-width: 700px; }
 
 .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-red-bright); text-shadow: 0 0 14px var(--color-red-glow); margin-bottom: 1.5rem; animation: fadeUp 0.7s ease both; }
 .heroTitle { font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 900; letter-spacing: 0.02em; margin-bottom: 1.5rem; animation: fadeUp 0.7s ease 0.1s both; color: #0d1b3e; }
@@ -205,7 +206,7 @@
   .shapeSquare { width: 38px !important; height: 38px !important; border-width: 2px !important; opacity: 1 !important; }
 
   /* Image chica plus large sur mobile */
-  .heroImage { width: 55%; opacity: 1; mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent 100%); }
+  .heroImage { width: 70%; opacity: 1; mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, transparent 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 60%, transparent 100%); }
 
   /* Pricing */
   .pricingCard { padding: 1.8rem 1.4rem; }
