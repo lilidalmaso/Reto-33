@@ -128,7 +128,7 @@
 /* ─── PRICING ─────────────────────────────────────── */
 .pricingWrapper { display: flex; justify-content: center; }
 .pricingCard { max-width: 480px; width: 100%; padding: 2.5rem; border: 1px solid rgba(240,192,64,0.45) !important; box-shadow: 0 0 40px rgba(240,192,64,0.12), 0 8px 40px rgba(0,20,80,0.15); position: relative; }
-.pricingBadge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--color-red-bright); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 20px; box-shadow: 0 0 16px var(--color-red-glow); white-space: nowrap; }
+.pricingBadge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #b30000; color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 20px; box-shadow: 0 0 16px var(--color-red-glow); white-space: nowrap; }
 .pricingName { text-align: center; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.65; margin-bottom: 1.5rem; margin-top: 0.5rem; }
 .pricingPrice { display: flex; align-items: flex-end; justify-content: center; gap: 4px; margin-bottom: 0.4rem; }
 .pricingCurrency { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--color-red-bright); text-shadow: 0 0 20px var(--color-red-glow); margin-bottom: 10px; }
