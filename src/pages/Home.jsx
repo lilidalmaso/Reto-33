@@ -63,7 +63,7 @@ function Home() {
 
       {/* HERO */}
       <section className={styles.hero}>
-        <img src={imgChica} alt="" className={styles.heroImage} aria-hidden="true" />
+        <img src={imgChica} alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" />
         <div className={styles.shapes} aria-hidden="true">
           <div className={`${styles.shape} ${styles.shapeCircle}`} />
           <div className={`${styles.shape} ${styles.shapeTriangle}`} />
