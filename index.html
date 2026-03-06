@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karla — Reto 33</title>
     <meta name="description" content="Reto 33 con Karla — El programa intensivo de 33 días que transforma tu vida. Más de 500 participantes, 5 clases en vivo, comunidad activa. ¡Únete al próximo ciclo por solo 55€!" />
+
     <!-- Preload image LCP -->
     <link rel="preload" as="image" href="/Reto-33/chica.webp" fetchpriority="high" />
 
@@ -29,6 +30,15 @@
     </script>
   </head>
   <body>
+    <!-- Image LCP hors React pour affichage immédiat -->
+    <img
+      src="/Reto-33/chica.webp"
+      fetchpriority="high"
+      decoding="async"
+      style="position:absolute;right:0;top:0;bottom:0;height:100%;width:42%;object-fit:cover;object-position:center top;opacity:0;pointer-events:none;z-index:0;"
+      aria-hidden="true"
+      id="lcp-chica"
+    />
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
