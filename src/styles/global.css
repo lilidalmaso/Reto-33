@@ -113,6 +113,13 @@ body::after {
 .main-content { flex: 1; }
 a { color: inherit; text-decoration: none; }
 
+/* ─── TEXT SHADOWS GLOBAUX ───────────────────────── */
+/* Ombre blanche pour textes sombres sur fond clair/dégradé */
+h1, h2, h3 { text-shadow: 0 1px 6px rgba(255,255,255,0.8), 0 2px 12px rgba(255,255,255,0.4); }
+p, li { text-shadow: 0 1px 4px rgba(255,255,255,0.6); }
+/* Ombre noire pour petits textes sur fond sombre */
+small, label { text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 600;
