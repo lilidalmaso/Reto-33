@@ -32,8 +32,8 @@
   --color-text:  #0d1b3e;
   --color-muted: #4a6a9a;
 
-  --font-display: 'Cinzel', serif;
-  --font-body:    'Raleway', sans-serif;
+  --font-display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body:    "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
   --radius:       6px;
   --transition:   0.3s ease;
 }
