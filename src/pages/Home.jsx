@@ -9,7 +9,6 @@ function scrollTo(id) {
   const el = document.getElementById(id)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
-
 const benefits = [
   { icon: '📅', title: '5 Clases en Vivo', desc: "Sesiones en directo donde aprenderás, preguntarás y avanzarás con acompañamiento real en cada etapa del reto." },
   { icon: '🗓️', title: '33 Días de Reto Diario', desc: "Un desafío diario estructurado durante 33 días para construir hábitos poderosos que transformen tu vida de adentro hacia afuera." },
