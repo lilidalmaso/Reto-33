@@ -16,11 +16,6 @@ const benefits = [
   { icon: '👥', title: 'Mentorías Grupales', desc: "Sesiones de mentoría en grupo para resolver dudas, recibir orientación personalizada y mantenerte enfocado durante todo el proceso." },
 ]
 
-const testimonials = [
-  { name: 'Sofía M.', role: 'Emprendedora, Bogotá', text: "En menos de tres semanas vi un cambio brutal en mi vida. Este método me dio la claridad que llevaba años buscando. ¡No me arrepiento para nada!", stars: 5 },
-  { name: 'Carlos R.', role: 'Consultor, Medellín', text: "La mejor plata que he invertido este año, ¡sin duda! Todo es concreto, directo al grano. Lo recomiendo a todo el mundo.", stars: 5 },
-  { name: 'Alejandra T.', role: 'Coach, Cali', text: "Al principio estaba escéptica, pero desde la primera semana los resultados me dejaron sin palabras. ¡Esto sí funciona de verdad!", stars: 5 },
-]
 
 const faqs = [
   { q: '¿Para quién es este programa?', a: "Este programa es para toda persona con ganas de crecer y obtener resultados concretos, dispuesta a comprometerse durante 33 días. No importa de dónde seas ni en qué etapa estés." },
@@ -29,15 +24,6 @@ const faqs = [
   { q: '¿Hay seguimiento después del programa?', a: "¡Claro que sí! Conservas el acceso a la comunidad y a todos los recursos después del día 33, para que sigas avanzando sin parar." },
 ]
 
-function Stars({ count }) {
-  return (
-    <div className={styles.stars}>
-      {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className={styles.star}>★</span>
-      ))}
-    </div>
-  )
-}
 
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
@@ -78,22 +64,6 @@ function Home() {
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi Plaza →</a>
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('program') }} className={styles.btnGhost}>Conocer el programa</a>
           </div>
-          <div className={styles.heroStats}>
-            <div className={styles.stat}><span className={styles.statNum}>500+</span><span className={styles.statLabel}>Participantes</span></div>
-            <div className={styles.statDivider} />
-            <div className={styles.stat}><span className={styles.statNum}>33</span><span className={styles.statLabel}>Días</span></div>
-            <div className={styles.statDivider} />
-            <div className={styles.stat}><span className={styles.statNum}>97%</span><span className={styles.statLabel}>Satisfechos</span></div>
-          </div>
-        </div>
-      </section>
-
-      {/* URGENCIA */}
-      <div className={styles.urgency}>
-        <span className={styles.urgencyDot} />
-        El próximo ciclo arranca en <strong> 7 días</strong> — Solo quedan <strong> 12 Plazas</strong> disponibles
-      </div>
-
       {/* PROBLEMA */}
       <section className={styles.section} id="problem">
         <div className="container">
@@ -168,29 +138,6 @@ function Home() {
                 <span className={styles.benefitIcon}>{b.icon}</span>
                 <h3 className={styles.benefitTitle}>{b.title}</h3>
                 <p className={styles.benefitDesc}>{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIOS */}
-      <section className={`${styles.section} ${styles.sectionDark}`} id="testimonials">
-        <div className="container">
-          <p className={styles.sectionEyebrow}>Ellos ya lo vivieron</p>
-          <h2 className={styles.sectionTitle}>Lo que dicen<br /><span className={styles.gold}>nuestros participantes</span></h2>
-          <div className={styles.testimonialsGrid}>
-            {testimonials.map((t) => (
-              <div key={t.name} className={styles.testimonialCard}>
-                <Stars count={t.stars} />
-                <p className={styles.testimonialText}>"{t.text}"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                  <div>
-                    <p className={styles.testimonialName}>{t.name}</p>
-                    <p className={styles.testimonialRole}>{t.role}</p>
-                  </div>
-                </div>
               </div>
             ))}
           </div>

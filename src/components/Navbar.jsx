@@ -3,7 +3,6 @@ import styles from './Navbar.module.css'
 
 const navLinks = [
   { to: 'program', label: 'El Programa' },
-  { to: 'testimonials', label: 'Testimonios' },
   { to: 'pricing', label: 'Precio' },
   { to: 'faq', label: 'Preguntas' },
 ]

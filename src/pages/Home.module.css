@@ -215,3 +215,26 @@
   .step { flex-direction: column; gap: 0.8rem; }
   .stepNum { font-size: 1.6rem; width: auto; }
 }
+
+/* ─── SHAPES MOBILE ──────────────────────────────── */
+.shapesMobile { display: none; }
+
+@media (max-width: 768px) {
+  /* Cacher les shapes desktop */
+  .shapes { display: none !important; }
+
+  /* Afficher les shapes mobile sous les boutons */
+  .shapesMobile {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    padding: 1.5rem 0 0.5rem !important;
+    overflow: visible !important;
+  }
+  .shapesMobile .shape { position: relative !important; top: auto !important; right: auto !important; }
+  .shapesMobile .shapeCircle { width: 55px !important; height: 55px !important; border-width: 2px !important; }
+  .shapesMobile .shapeTriangle { width: 55px !important; height: 55px !important; }
+  .shapesMobile .shapeSquare { width: 55px !important; height: 55px !important; border-width: 2px !important; }
+}
