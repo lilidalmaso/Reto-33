@@ -15,12 +15,20 @@ const benefits = [
   { icon: '💬', title: 'Comunidad Abierta', desc: "Acceso a un grupo activo de personas comprometidas con su crecimiento, donde podrás compartir, apoyarte y celebrar tus avances." },
   { icon: '👥', title: 'Mentorías Grupales', desc: "Sesiones de mentoría en grupo para resolver dudas, recibir orientación personalizada y mantenerte enfocado durante todo el proceso." },
 ]
+
+const testimonials = [
+  { name: 'Sofía M.', role: 'Emprendedora, Bogotá', text: "En menos de tres semanas vi un cambio brutal en mi vida. Este método me dio la claridad que llevaba años buscando. ¡No me arrepiento para nada!", stars: 5 },
+  { name: 'Carlos R.', role: 'Consultor, Medellín', text: "La mejor plata que he invertido este año, ¡sin duda! Todo es concreto, directo al grano. Lo recomiendo a todo el mundo.", stars: 5 },
+  { name: 'Alejandra T.', role: 'Coach, Cali', text: "Al principio estaba escéptica, pero desde la primera semana los resultados me dejaron sin palabras. ¡Esto sí funciona de verdad!", stars: 5 },
+]
+
 const faqs = [
   { q: '¿Para quién es este programa?', a: "Este programa es para toda persona con ganas de crecer y obtener resultados concretos, dispuesta a comprometerse durante 33 días. No importa de dónde seas ni en qué etapa estés." },
   { q: '¿Cuánto tiempo necesito dedicarle cada día?', a: "Con 30 a 45 minutos diarios es suficiente. El programa está diseñado para encajar en un horario ocupado, sin excusas." },
   { q: '¿Qué pasa si no veo resultados?', a: "Ofrecemos garantía total de 30 días. Si no ves cambios, te devolvemos tu inversión completa, sin preguntas ni letra pequeña." },
   { q: '¿Hay seguimiento después del programa?', a: "¡Claro que sí! Conservas el acceso a la comunidad y a todos los recursos después del día 33, para que sigas avanzando sin parar." },
 ]
+
 function Stars({ count }) {
   return (
     <div className={styles.stars}>
@@ -30,6 +38,7 @@ function Stars({ count }) {
     </div>
   )
 }
+
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
@@ -42,9 +51,11 @@ function FaqItem({ q, a }) {
     </div>
   )
 }
+
 function Home() {
   return (
     <div className={styles.landing}>
+
       {/* HERO */}
       <section className={styles.hero}>
         <img src="/chica.webp" alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" width="600" height="900" />
@@ -76,11 +87,13 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* URGENCIA */}
       <div className={styles.urgency}>
         <span className={styles.urgencyDot} />
         El próximo ciclo arranca en <strong> 7 días</strong> — Solo quedan <strong> 12 Plazas</strong> disponibles
       </div>
+
       {/* PROBLEMA */}
       <section className={styles.section} id="problem">
         <div className="container">
@@ -112,6 +125,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* SOLUCIÓN */}
       <section className={`${styles.section} ${styles.sectionDark}`} id="program">
         <div className="container">
@@ -142,6 +156,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* BENEFICIOS */}
       <section className={styles.section} id="benefits">
         <div className="container">
@@ -158,6 +173,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* TESTIMONIOS */}
       <section className={`${styles.section} ${styles.sectionDark}`} id="testimonials">
         <div className="container">
@@ -180,6 +196,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* PRECIOS */}
       <section className={styles.section} id="pricing">
         <div className="container">
@@ -223,6 +240,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* PREGUNTAS FRECUENTES */}
       <section className={`${styles.section} ${styles.sectionDark}`} id="faq">
         <div className="container">
@@ -235,6 +253,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       {/* CTA FINAL */}
       <section className={styles.ctaFinal} id="contact">
         <div className={`container ${styles.ctaInner}`}>
@@ -257,7 +276,9 @@ function Home() {
           </div>
         </div>
       </section>
+
     </div>
   )
 }
+
 export default Home
