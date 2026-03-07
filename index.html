@@ -47,7 +47,6 @@
     <link rel="preload" as="image" href="/chica.webp" fetchpriority="high" />
 
     <style>
-      /* CSS CRITIQUE — affichage instantané avant React */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html, body {
         background: linear-gradient(180deg, #f5f0e8 0%, #a8ccee 35%, #3a72b0 67%, #0d1b3e 100%);
@@ -57,52 +56,31 @@
         overflow-x: hidden;
         min-height: 100vh;
       }
-      #root { position: relative; z-index: 1; }
+      /* Fallback positionné en absolute pour ne PAS pousser le contenu */
       #fallback {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 2rem;
-        z-index: 2;
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 0;
         transition: opacity 0.4s ease;
-      }
-      #fallback h1 {
-        font-size: clamp(2rem, 7vw, 3.5rem);
-        font-weight: 700;
-        color: #0d1b3e;
-        line-height: 1.2;
-        letter-spacing: 0.05em;
-        text-shadow: 0 1px 6px rgba(255,255,255,0.8);
-        max-width: 600px;
-      }
-      #fallback h1 span { color: #f0c040; }
-      #fallback p {
-        margin-top: 1rem;
-        font-size: 1rem;
-        color: #1e3f7a;
-        max-width: 500px;
-        text-shadow: 0 1px 4px rgba(255,255,255,0.6);
       }
       #fallback-img {
         position: absolute;
-        right: 0; top: 0; bottom: 0;
+        right: 0; top: 0;
         height: 100%; width: 42%;
         object-fit: cover;
         object-position: center top;
-        z-index: 0;
       }
+      /* Root prend toute la place dès le début */
+      #root { position: relative; z-index: 1; min-height: 100vh; }
     </style>
   </head>
   <body>
-    <!-- Fallback visible immédiatement avant React -->
+    <!-- Image préchargée en absolute — ne cause AUCUN décalage -->
     <div id="fallback">
       <img src="/chica.webp" fetchpriority="high" decoding="async"
-        id="fallback-img" alt="" aria-hidden="true"
-        width="600" height="900" />
-      <h1>Transforma tu vida<br />en <span>33 días</span></h1>
-      <p>El método intensivo que ya cambió la vida de más de 500 personas.</p>
+        id="fallback-img" alt="" aria-hidden="true" width="600" height="900" />
     </div>
 
     <div id="root"></div>
