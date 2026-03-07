@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lilidalmaso.github.io/Reto-33/sitemap.xml
+Sitemap: https://2365ac54.reto-33.pages.dev/sitemap.xml
