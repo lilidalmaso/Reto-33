@@ -1,9 +1,5 @@
 import { useState } from 'react'
 import styles from './Home.module.css'
-import imgRelo from '/relo.webp'
-import imgNumeros from '/numeros.webp'
-import imgLibro from '/libro.webp'
-import imgInfinito from '/infinito.webp'
 
 function scrollTo(id) {
   const el = document.getElementById(id)
@@ -62,7 +58,7 @@ function Home() {
 
       {/* HERO */}
       <section className={styles.hero}>
-        <img src="/chica.webp" alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" />
+        <img src="/chica.webp" alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" width="600" height="900" />
         <div className={styles.shapes} aria-hidden="true">
           <div className={`${styles.shape} ${styles.shapeCircle}`} />
           <div className={`${styles.shape} ${styles.shapeTriangle}`} />
@@ -89,7 +85,6 @@ function Home() {
             <div className={styles.statDivider} />
             <div className={styles.stat}><span className={styles.statNum}>97%</span><span className={styles.statLabel}>Satisfechos</span></div>
           </div>
-
         </div>
       </section>
 
@@ -104,7 +99,7 @@ function Home() {
         <div className="container">
           <div className={styles.sectionWithImage}>
             <div className={styles.sectionImageSide}>
-              <img src={imgRelo} alt="El tiempo pasa" className={styles.sectionImage} />
+              <img src="/relo.webp" alt="El tiempo pasa" className={styles.sectionImage} width="500" height="500" loading="lazy" />
             </div>
             <div className={styles.sectionContentSide}>
               <p className={styles.sectionEyebrow}>¿Te identificas con alguno de estos?</p>
@@ -156,7 +151,7 @@ function Home() {
               </div>
             </div>
             <div className={styles.sectionImageSide}>
-              <img src={imgNumeros} alt="Numerología" className={styles.sectionImage} />
+              <img src="/numeros.webp" alt="Numerología" className={styles.sectionImage} width="500" height="500" loading="lazy" />
             </div>
           </div>
         </div>
@@ -233,7 +228,7 @@ function Home() {
               </ul>
               <div className={styles.bonusBox}>
                 <p className={styles.bonusLabel}>BONO ESPECIAL</p>
-                <img src={imgLibro} alt="Diario Numerológico" className={styles.bonusImage} />
+                <img src="/libro.webp" alt="Diario Numerológico" className={styles.bonusImage} width="200" height="200" loading="lazy" />
                 <p className={styles.bonusTitle}>📖 Diario Numerológico PDF</p>
                 <p className={styles.bonusSub}>Incluido sin costo adicional</p>
               </div>
@@ -263,7 +258,7 @@ function Home() {
       <section className={styles.ctaFinal} id="contact">
         <div className={`container ${styles.ctaInner}`}>
           <p className={styles.sectionEyebrow}>La decisión es tuya</p>
-          <img src={imgInfinito} alt="Infinito" className={styles.ctaImage} />
+          <img src="/infinito.webp" alt="Infinito" className={styles.ctaImage} width="400" height="400" loading="lazy" />
           <h2 className={styles.ctaTitle}>En 33 días,<br />todo puede cambiar</h2>
           <p className={styles.ctaSub}>La única diferencia entre donde estás hoy y donde quieres estar es la decisión que tomas en este momento. No la sigas aplazando.</p>
           <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Quiero mi Plaza ahora →</a>
