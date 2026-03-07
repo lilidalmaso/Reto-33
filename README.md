@@ -34,3 +34,4 @@ src/
 - **Vite 6** — Build tool ultra-rapide
 - **React Router 6** — Routing côté client
 - **CSS Modules** — Styles scopés par composant
+" " 
