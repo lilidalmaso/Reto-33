@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://2365ac54.reto-33.pages.dev/sitemap.xml
