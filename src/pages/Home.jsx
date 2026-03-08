@@ -16,14 +16,12 @@ const benefits = [
   { icon: '👥', title: 'Mentorías Grupales', desc: "Sesiones de mentoría en grupo para resolver dudas, recibir orientación personalizada y mantenerte enfocado durante todo el proceso." },
 ]
 
-
 const faqs = [
   { q: '¿Para quién es este programa?', a: "Este programa es para toda persona con ganas de crecer y obtener resultados concretos, dispuesta a comprometerse durante 33 días. No importa de dónde seas ni en qué etapa estés." },
   { q: '¿Cuánto tiempo necesito dedicarle cada día?', a: "Con 30 a 45 minutos diarios es suficiente. El programa está diseñado para encajar en un horario ocupado, sin excusas." },
   { q: '¿Qué pasa si no veo resultados?', a: "Ofrecemos garantía total de 30 días. Si no ves cambios, te devolvemos tu inversión completa, sin preguntas ni letra pequeña." },
   { q: '¿Hay seguimiento después del programa?', a: "¡Claro que sí! Conservas el acceso a la comunidad y a todos los recursos después del día 33, para que sigas avanzando sin parar." },
 ]
-
 
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
@@ -64,6 +62,21 @@ function Home() {
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi Plaza →</a>
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('program') }} className={styles.btnGhost}>Conocer el programa</a>
           </div>
+          {/* Formes géométriques — mobile uniquement */}
+          <div className={styles.shapesMobile} aria-hidden="true">
+            <div className={`${styles.shape} ${styles.shapeCircle}`} />
+            <div className={`${styles.shape} ${styles.shapeTriangle}`} />
+            <div className={`${styles.shape} ${styles.shapeSquare}`} />
+          </div>
+        </div>
+      </section>
+
+      {/* URGENCIA */}
+      <div className={styles.urgency}>
+        <span className={styles.urgencyDot} />
+        El próximo ciclo arranca en <strong> 7 días</strong> — Solo quedan <strong> 12 Plazas</strong> disponibles
+      </div>
+
       {/* PROBLEMA */}
       <section className={styles.section} id="problem">
         <div className="container">
@@ -227,4 +240,5 @@ function Home() {
     </div>
   )
 }
+
 export default Home

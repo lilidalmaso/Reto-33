@@ -1,6 +1,8 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: rgba(13, 27, 62, 0.88);
   backdrop-filter: blur(24px);
@@ -26,7 +28,7 @@
 .phone:hover { text-shadow: 0 0 22px rgba(240,192,64,0.7); color: #fff; }
 .ctaBtn { display: inline-block; padding: 0.5rem 1.3rem; border: 1px solid var(--color-gold-bright); color: var(--color-gold-bright); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: var(--radius); transition: all var(--transition); box-shadow: 0 0 10px rgba(240,192,64,0.2); }
 .ctaBtn:hover { background: rgba(240,192,64,0.12); box-shadow: 0 0 22px rgba(240,192,64,0.4); color: #fff; }
-.burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: pointer; }
 .burger span { display: block; width: 20px; height: 1px; background: var(--color-gold-bright); box-shadow: 0 0 4px var(--color-gold-glow); }
 @media (max-width: 700px) {
   .nav, .ctaBtn, .phone { display: none; }

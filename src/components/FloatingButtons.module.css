@@ -1,0 +1,56 @@
+.btn {
+  position: fixed;
+  bottom: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(8px);
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Gauche — style gold */
+.btnLeft {
+  left: 1.5rem;
+  background: rgba(13, 27, 62, 0.75);
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  color: var(--color-gold-bright);
+  box-shadow: 0 4px 20px rgba(0, 20, 80, 0.3), 0 0 12px rgba(240, 192, 64, 0.15);
+}
+.btnLeft:hover {
+  box-shadow: 0 8px 28px rgba(0, 20, 80, 0.4), 0 0 20px rgba(240, 192, 64, 0.3);
+}
+
+/* Droite — style WhatsApp vert */
+.btnRight {
+  right: 1.5rem;
+  background: rgba(13, 27, 62, 0.75);
+  border: 1px solid rgba(37, 211, 102, 0.5);
+  color: #25d366;
+  box-shadow: 0 4px 20px rgba(0, 20, 80, 0.3), 0 0 12px rgba(37, 211, 102, 0.15);
+}
+.btnRight:hover {
+  box-shadow: 0 8px 28px rgba(0, 20, 80, 0.4), 0 0 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Mobile — icône seule */
+@media (max-width: 768px) {
+  .btn span { display: none; }
+  .btn { padding: 0.75rem; border-radius: 50%; }
+  .btnLeft { left: 1rem; bottom: 1rem; }
+  .btnRight { right: 1rem; bottom: 1rem; }
+}

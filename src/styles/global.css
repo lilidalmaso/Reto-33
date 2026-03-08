@@ -1,5 +1,3 @@
-
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -110,7 +108,7 @@ body::after {
   z-index: 1;
 }
 
-.main-content { flex: 1; }
+.main-content { flex: 1; padding-top: 64px; }
 a { color: inherit; text-decoration: none; }
 
 /* ─── TEXT SHADOWS — sections claires uniquement ─── */
