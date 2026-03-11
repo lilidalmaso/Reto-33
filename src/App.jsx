@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingButtons from './components/FloatingButtons'
+import BubblesCanvas from './components/BubblesCanvas'
 import Home from './pages/Home'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
@@ -9,6 +10,7 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <div className="app">
+      <BubblesCanvas />
       <Navbar />
       <main className="main-content">
         <Routes>
