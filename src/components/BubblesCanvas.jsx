@@ -14,49 +14,51 @@ export default function BubblesCanvas() {
 
     let state = 'idle'
     let idleTimer = null
-    const IDLE_DELAY = 10000
+    const IDLE_DELAY = 5000
 
     const NUMBERS = ['1','2','3','4','5','6','7','8','9','11','22','33']
 
     function spawnPopParticles(cx, cy, r, col) {
-      const count = Math.floor(10 + r * 0.5)
+      const count = Math.floor(8 + r * 0.4)
       for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.6
-        const speed = (3 + Math.random() * 5) * (r / 35) // plus rapide
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4
+        const speed = (1.5 + Math.random() * 3) * (r / 40)
         const size = 1.5 + Math.random() * 3
         particles.push({
           x: cx, y: cy,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          size, col,
-          alpha: 1,
-          decay: 0.055 + Math.random() * 0.04, // disparition rapide
+          size, col, alpha: 1,
+          decay: 0.025 + Math.random() * 0.02,
         })
       }
-      // Anneau de dilation rapide
       particles.push({
         x: cx, y: cy,
         ring: true,
-        r: r * 0.5,
-        maxR: r * 2.5,
-        col,
-        alpha: 0.8,
-        decay: 0.09, // anneau rapide
+        r: r * 0.8,
+        maxR: r * 2.2,
+        col, alpha: 0.7,
+        decay: 0.04,
       })
     }
 
-    function triggerPop() {
-      if (state === 'popping' || state === 'hidden') return
-      state = 'popping'
+    function popBubble(b) {
+      if (b.popping) return
+      b.popping = true
+      b.popProgress = 0
+      spawnPopParticles(b.x, b.y, b.r, b.col)
+    }
+
+    function triggerPopAll() {
+      if (state === 'hidden') return
       clearTimeout(idleTimer)
       const sorted = [...bubbles].filter(b => !b.popping)
       sorted.sort((a, b) => a.y - b.y)
       sorted.forEach((b, i) => {
-        setTimeout(() => {
-          if (!b.popping) { b.popping = true; b.popProgress = 0 }
-        }, i * 80)
+        setTimeout(() => popBubble(b), i * 80)
       })
       const totalDelay = sorted.length * 80 + 800
+      state = 'popping'
       setTimeout(() => {
         bubbles = []
         state = 'hidden'
@@ -68,26 +70,65 @@ export default function BubblesCanvas() {
       if (state !== 'hidden') return
       state = 'spawning'
       let count = 0
-      const total = 18
+      const total = 11
       const interval = setInterval(() => {
         if (count >= total) { clearInterval(interval); state = 'idle'; return }
         bubbles.push(mkBubble(false))
         count++
-      }, 200)
+      }, 11)
     }
 
-    function onActivity() {
+    // ── Gestion des clics ────────────────────────────────────────────────────
+    function handleClick(e) {
       if (state === 'hidden') {
         clearTimeout(idleTimer)
         idleTimer = setTimeout(triggerSpawn, IDLE_DELAY)
         return
       }
-      if (state === 'spawning' || state === 'idle') triggerPop()
+
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX
+      const clientY = e.clientY ?? e.touches?.[0]?.clientY
+
+      if (clientX === undefined) { triggerPopAll(); return }
+
+      // Cherche une bulle sous le curseur
+      let hitBubble = null
+      for (const b of bubbles) {
+        if (b.popping) continue
+        const dx = b.x - clientX
+        const dy = b.y - clientY
+        if (Math.sqrt(dx*dx + dy*dy) <= b.r) {
+          hitBubble = b
+          break
+        }
+      }
+
+      if (hitBubble) {
+        // Clic direct sur une bulle → pop individuel
+        popBubble(hitBubble)
+      } else {
+        // Clic ailleurs (bouton, lien, n'importe où) → pop toutes
+        triggerPopAll()
+      }
     }
 
-    window.addEventListener('click',      onActivity)
-    window.addEventListener('keydown',    onActivity)
-    window.addEventListener('touchstart', onActivity, { passive: true })
+    // Écoute sur window pour capturer TOUS les clics (boutons, liens, partout)
+    window.addEventListener('click', handleClick)
+    window.addEventListener('touchstart', handleClick, { passive: true })
+
+    // ── Curseur intelligent : pointer si bulle sous la souris ────────────────
+    function handleMouseMove(e) {
+      let onBubble = false
+      for (const b of bubbles) {
+        if (b.popping) continue
+        const dx = b.x - e.clientX
+        const dy = b.y - e.clientY
+        if (Math.sqrt(dx*dx + dy*dy) <= b.r) { onBubble = true; break }
+      }
+      canvasBg.style.pointerEvents = onBubble ? 'auto' : 'none'
+      canvasBg.style.cursor = onBubble ? 'pointer' : 'default'
+    }
+    window.addEventListener('mousemove', handleMouseMove)
 
     function getNavbarHeight() {
       const nav = document.querySelector('header')
@@ -115,33 +156,23 @@ export default function BubblesCanvas() {
 
     function mkBubble(randomY = false) {
       const r = 22 + Math.random() * 45
-
-      // Trajectoire aléatoire — pas forcément vers le haut
-      const angle = -Math.PI / 2       // direction de base : haut
-        + (Math.random() - 0.5) * 1.8  // déviation latérale importante
-      const speed = 1.2 + Math.random() * 2.0 // plus rapide
-
       const col = WIN7_COLORS[Math.floor(Math.random() * WIN7_COLORS.length)]
+      const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.5
+      const speed = 2.5 + Math.random() * 1.5
       const number = NUMBERS[Math.floor(Math.random() * NUMBERS.length)]
       return {
         x: r + Math.random() * (W - r * 2),
-        y: randomY ? Math.random() * H : H + r + Math.random() * 200,
-        r,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        col,
+        y: randomY ? Math.random() * H : H + r + Math.random() * 50,
+        r, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, col,
         wobblePhase: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.015 + Math.random() * 0.02,  // wobble plus prononcé
-        wobbleAmp: 0.8 + Math.random() * 1.2,        // amplitude plus grande
+        wobbleSpeed: 0.008 + Math.random() * 0.01,
+        wobbleAmp: 0.3 + Math.random() * 0.4,
         popping: false, popProgress: 0,
         number,
-        // Changement de direction aléatoire
-        driftTimer: 60 + Math.floor(Math.random() * 120),
-        driftCount: 0,
       }
     }
 
-    for (let i = 0; i < 18; i++) bubbles.push(mkBubble(true))
+    for (let i = 0; i < 11; i++) bubbles.push(mkBubble(true))
 
     function drawBubble(ctx, cx, cy, r, col, alpha, number) {
       if (alpha === undefined) alpha = 1
@@ -226,10 +257,7 @@ export default function BubblesCanvas() {
         goldGrad.addColorStop(1,   `rgba(255,220,80,${0.95*alpha})`)
         ctx.fillStyle = goldGrad
         ctx.fillText(number, cx, cy + fontSize*0.05)
-        ctx.shadowBlur = 0
-        ctx.globalAlpha = 0.35 * alpha
-        ctx.fillStyle = 'rgba(255,255,255,0.9)'
-        ctx.fillText(number, cx, cy - fontSize*0.06)
+
         ctx.restore()
       }
 
@@ -239,7 +267,7 @@ export default function BubblesCanvas() {
     function drawParticles() {
       particles = particles.filter(p => {
         if (p.ring) {
-          p.r += (p.maxR - p.r) * 0.18 // dilation rapide
+          p.r += (p.maxR - p.r) * 0.12
           p.alpha -= p.decay
           if (p.alpha <= 0) return false
           const { h, s, l } = p.col
@@ -247,19 +275,17 @@ export default function BubblesCanvas() {
           ctx.beginPath()
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
           ctx.strokeStyle = `hsla(${h},${s}%,${l+10}%,${p.alpha})`
-          ctx.lineWidth = 2.5
+          ctx.lineWidth = 2
           ctx.stroke()
           ctx.restore()
           return true
         }
-
         p.x += p.vx
         p.y += p.vy
-        p.vy += 0.08 // gravité plus forte = chute rapide
-        p.vx *= 0.96
+        p.vy += 0.04
+        p.vx *= 0.98
         p.alpha -= p.decay
         if (p.alpha <= 0) return false
-
         const { h, s, l } = p.col
         ctx.save()
         ctx.globalAlpha = p.alpha
@@ -287,7 +313,7 @@ export default function BubblesCanvas() {
 
       const navH = getNavbarHeight()
 
-      if (state === 'idle' && frameCount % 90 === 0 && bubbles.length < 22) {
+      if (state === 'idle' && frameCount % 110 === 0 && bubbles.length < 20) {
         bubbles.push(mkBubble(false))
       }
 
@@ -295,38 +321,20 @@ export default function BubblesCanvas() {
 
       bubbles = bubbles.filter(b => {
         if (b.popping) {
-          b.popProgress += 0.12 // pop plus rapide
+          b.popProgress += 0.07
           if (b.popProgress >= 1) return false
-          const scale = 1 + b.popProgress * 0.1
+          const scale = 1 + b.popProgress * 0.15
           const alpha = 1 - b.popProgress
           drawBubble(ctx, b.x, b.y, b.r * scale, b.col, alpha, b.number)
           return true
         }
 
         b.wobblePhase += b.wobbleSpeed
-        b.x += b.vx + Math.sin(b.wobblePhase) * b.wobbleAmp * 0.15
+        b.x += b.vx + Math.sin(b.wobblePhase) * b.wobbleAmp * 0.08
         b.y += b.vy
 
-        // Changement de direction aléatoire progressif
-        b.driftCount++
-        if (b.driftCount >= b.driftTimer) {
-          b.driftCount = 0
-          b.driftTimer = 60 + Math.floor(Math.random() * 120)
-          // Petite impulsion aléatoire
-          b.vx += (Math.random() - 0.5) * 0.8
-          b.vy += (Math.random() - 0.5) * 0.5
-          // Limite la vitesse max
-          const spd = Math.sqrt(b.vx*b.vx + b.vy*b.vy)
-          if (spd > 3) { b.vx = (b.vx/spd)*3; b.vy = (b.vy/spd)*3 }
-          // Force légère vers le haut pour qu'elles ne descendent pas indéfiniment
-          if (b.vy > 0.5) b.vy -= 0.4
-        }
-
-        // Pop au contact navbar
-        if (b.y - b.r <= navH && !b.popping) {
-          b.popping = true
-          b.popProgress = 0
-          spawnPopParticles(b.x, Math.max(b.y, navH), b.r, b.col)
+        if (b.y - b.r <= navH) {
+          popBubble(b)
           return true
         }
 
@@ -335,8 +343,8 @@ export default function BubblesCanvas() {
           else { return false }
         }
 
-        if (b.x - b.r < 0)  { b.x = b.r;     b.vx =  Math.abs(b.vx) * 0.7 }
-        if (b.x + b.r > W)  { b.x = W - b.r; b.vx = -Math.abs(b.vx) * 0.7 }
+        if (b.x - b.r < 0)  { b.x = b.r;     b.vx =  Math.abs(b.vx) * 0.6 }
+        if (b.x + b.r > W)  { b.x = W - b.r; b.vx = -Math.abs(b.vx) * 0.6 }
 
         drawBubble(ctx, b.x, b.y, b.r, b.col, 1, b.number)
         return true
@@ -350,10 +358,10 @@ export default function BubblesCanvas() {
     return () => {
       cancelAnimationFrame(animId)
       clearTimeout(idleTimer)
-      window.removeEventListener('resize',     resize)
-      window.removeEventListener('click',      onActivity)
-      window.removeEventListener('keydown',    onActivity)
-      window.removeEventListener('touchstart', onActivity)
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('click', handleClick)
+      window.removeEventListener('touchstart', handleClick)
+      window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [])
 
@@ -367,6 +375,7 @@ export default function BubblesCanvas() {
         pointerEvents: 'none',
         zIndex: 500,
         mixBlendMode: 'screen',
+
       }}
     />
   )
