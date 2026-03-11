@@ -306,6 +306,44 @@ export default function BubblesCanvas() {
       })
     }
 
+
+    // ── Collisions entre bulles ──────────────────────────────────────────────
+    function resolveBubbleCollisions() {
+      for (let i = 0; i < bubbles.length; i++) {
+        for (let j = i + 1; j < bubbles.length; j++) {
+          const a = bubbles[i]
+          const b = bubbles[j]
+          if (a.popping || b.popping) continue
+          const dx = b.x - a.x
+          const dy = b.y - a.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          const minDist = a.r + b.r
+          if (dist < minDist && dist > 0) {
+            // Vecteur de répulsion normalisé
+            const nx = dx / dist
+            const ny = dy / dist
+            const overlap = (minDist - dist) * 0.5
+            // Séparer les bulles
+            a.x -= nx * overlap
+            a.y -= ny * overlap
+            b.x += nx * overlap
+            b.y += ny * overlap
+            // Échanger les composantes de vitesse sur l'axe de collision
+            const dvx = a.vx - b.vx
+            const dvy = a.vy - b.vy
+            const dot = dvx * nx + dvy * ny
+            if (dot > 0) {
+              const impulse = dot * 0.85
+              a.vx -= impulse * nx
+              a.vy -= impulse * ny
+              b.vx += impulse * nx
+              b.vy += impulse * ny
+            }
+          }
+        }
+      }
+    }
+
     function draw() {
       ctx.clearRect(0, 0, W, H)
       ctx.globalAlpha = 1
@@ -318,6 +356,7 @@ export default function BubblesCanvas() {
       }
 
       drawParticles()
+      resolveBubbleCollisions()
 
       bubbles = bubbles.filter(b => {
         if (b.popping) {
