@@ -313,7 +313,7 @@ export default function BubblesCanvas() {
 
       const navH = getNavbarHeight()
 
-      if (state === 'idle' && frameCount % 110 === 0 && bubbles.length < 20) {
+      if (state === 'idle' && frameCount % 60 === 0 && bubbles.length < 11) {
         bubbles.push(mkBubble(false))
       }
 
