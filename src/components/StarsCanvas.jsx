@@ -29,9 +29,11 @@ export default function StarsCanvas() {
           r: big ? 1.2 + Math.random() * 1.2 : 0.3 + Math.random() * 0.9,
           baseAlpha: big ? 0.8 + Math.random() * 0.2 : 0.3 + Math.random() * 0.5,
           color: i < 5 ? [240,200,120] : i < 10 ? [180,210,255] : [255,255,255],
-          tw: 0.006 + Math.random() * 0.012,
+          tw: 0.015 + Math.random() * 0.025,
           twOff: Math.random() * Math.PI * 2,
           spikes: big,
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.003,
         })
       }
       return list
@@ -142,8 +144,14 @@ export default function StarsCanvas() {
       for (const g of galaxies) galaxy(g)
 
       for (const s of stars) {
+        s.rot += s.rotSpeed
         const a = s.baseAlpha * (0.5 + Math.sin(frame * s.tw + s.twOff) * 0.5)
+        ctx.save()
+        ctx.translate(s.x, s.y)
+        ctx.rotate(s.rot)
+        ctx.translate(-s.x, -s.y)
         star(s.x, s.y, s.r, a, s.color, s.spikes)
+        ctx.restore()
       }
 
       animId = requestAnimationFrame(draw)
