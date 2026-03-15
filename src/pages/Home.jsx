@@ -9,18 +9,20 @@ function scrollTo(id) {
 const benefits = [
   { icon: '📅', title: '5 Clases en Vivo', desc: "Sesiones en directo donde aprenderás, preguntarás y avanzarás con acompañamiento real en cada etapa del reto." },
   { icon: '🗓️', title: '33 Días de Reto Diario', desc: "Un desafío diario estructurado durante 33 días para construir hábitos poderosos que transformen tu vida de adentro hacia afuera." },
-  { icon: '🌙', title: 'Inducción a los Sueños', desc: "Técnicas de reprogramación nocturna para que tu mente trabaje por ti incluso mientras duermes." },
+  { icon: '🌙', title: 'Inducción a los Sueños', desc: "Técnicas de reprogramación nocturna y exploración del subconsciente para que tu mente trabaje por ti incluso mientras duermes. Aprende qué significan tus sueños y úsalos a tu favor." },
   { icon: '🌿', title: 'Ayunos Conscientes', desc: "Protocolo de ayuno guiado para limpiar tu cuerpo, elevar tu energía y potenciar tu enfoque mental." },
-  { icon: '7→11', title: 'Metodología 7 – 11', desc: "El sistema exclusivo del Reto 33 que te lleva paso a paso desde donde estás hasta donde quieres llegar." },
+  { icon: '7→11', title: 'Metodología 7 – 11', desc: "El sistema exclusivo del Reto 33 que te lleva paso a paso desde donde estás hasta donde quieres llegar, trabajando la inteligencia emocional y el autoconocimiento profundo." },
   { icon: '💬', title: 'Comunidad Abierta', desc: "Acceso a un grupo activo de personas comprometidas con su crecimiento, donde podrás compartir, apoyarte y celebrar tus avances." },
   { icon: '👥', title: 'Mentorías Grupales', desc: "Sesiones de mentoría en grupo para resolver dudas, recibir orientación personalizada y mantenerte enfocado durante todo el proceso." },
 ]
 
 const faqs = [
-  { q: '¿Para quién es este programa?', a: "Este programa es para toda persona con ganas de crecer y obtener resultados concretos, dispuesta a comprometerse durante 33 días. No importa de dónde seas ni en qué etapa estés." },
+  { q: '¿Para quién es este programa?', a: "Para toda persona que siente vacío interno, miedo a avanzar, o que simplemente se pregunta «¿cómo saber quién soy realmente?». No importa tu edad ni de dónde seas — si quieres conocerte y crecer, este programa es para ti." },
   { q: '¿Cuánto tiempo necesito dedicarle cada día?', a: "Con 30 a 45 minutos diarios es suficiente. El programa está diseñado para encajar en un horario ocupado, sin excusas." },
   { q: '¿Qué pasa si no veo resultados?', a: "Ofrecemos garantía total de 30 días. Si no ves cambios, te devolvemos tu inversión completa, sin preguntas ni letra pequeña." },
   { q: '¿Hay seguimiento después del programa?', a: "¡Claro que sí! Conservas el acceso a la comunidad y a todos los recursos después del día 33, para que sigas avanzando sin parar." },
+  { q: '¿Este programa ayuda a superar miedos profundos?', a: "Sí. Trabajamos el miedo a equivocarse, el miedo a no poder hacerlo, el miedo a manejar tu propia vida y el miedo a avanzar sin saber cómo. A través de ejercicios de introspección, atención plena y gestión emocional, aprenderás a transformar esos miedos en impulso." },
+  { q: '¿Se trabajan las heridas de la infancia?', a: "Absolutamente. Una parte fundamental del Reto 33 es sanar heridas de la infancia y trabajar el amor propio y la autoestima desde la raíz, no desde la superficie." },
 ]
 
 function FaqItem({ q, a }) {
@@ -42,21 +44,21 @@ function Home() {
 
       {/* HERO */}
       <section className={styles.hero}>
-        <img src="/chica.webp" alt="" className={styles.heroImage} aria-hidden="true" fetchPriority="high" width="600" height="900" />
+        <img src="/chica.webp" alt="Karla, coach de numerología y desarrollo personal en Torrevieja" className={styles.heroImage} fetchPriority="high" width="600" height="900" />
         <div className={styles.shapes} aria-hidden="true">
           <div className={`${styles.shape} ${styles.shapeCircle}`} />
           <div className={`${styles.shape} ${styles.shapeTriangle}`} />
           <div className={`${styles.shape} ${styles.shapeSquare}`} />
         </div>
         <div className={`container ${styles.heroInner}`}>
-          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Pazas Limitadas</p>
+          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Plazas Limitadas</p>
           <h1 className={styles.heroTitle}>
             Transforma tu vida<br />
             en <span className={styles.gold}>33 días</span>
           </h1>
           <p className={styles.heroSub}>
-            El método intensivo que ya cambió la vida de más de 500 personas en Latinoamérica.
-            Únete al próximo ciclo y descubre todo lo que eres capaz de lograr.
+            Numerología, autoconocimiento y gestión emocional para dejar de sentir ese vacío interno
+            y convertirte en la mejor versión de ti. Desde Torrevieja para todo el mundo.
           </p>
           <div className={styles.heroCta}>
             <a href="#" onClick={e => { e.preventDefault(); scrollTo('pricing') }} className={styles.btnPrimary}>Quiero mi Plaza →</a>
@@ -82,17 +84,17 @@ function Home() {
         <div className="container">
           <div className={styles.sectionWithImage}>
             <div className={styles.sectionImageSide}>
-              <img src="/relo.webp" alt="El tiempo pasa" className={styles.sectionImage} width="500" height="500" loading="lazy" />
+              <img src="/relo.webp" alt="El tiempo pasa sin conocerse a uno mismo" className={styles.sectionImage} width="500" height="500" loading="lazy" />
             </div>
             <div className={styles.sectionContentSide}>
               <p className={styles.sectionEyebrow}>¿Te identificas con alguno de estos?</p>
-              <h2 className={styles.sectionTitle}>Llevas demasiado tiempo<br /><span className={styles.red}>sin avanzar de verdad</span></h2>
+              <h2 className={styles.sectionTitle}>¿Por qué me da miedo<br /><span className={styles.red}>conocerme de verdad?</span></h2>
               <div className={styles.problemGrid}>
                 {[
-                  "Sabes lo que quieres pero no sabes por dónde empezar ni cómo arrancar",
-                  "Ya probaste métodos que no funcionaron y no quieres volver a equivocarte",
-                  "Te sientes solo frente a tus metas y nadie a tu alrededor te entiende",
-                  "Cada semana parece igual a la anterior y el tiempo sigue pasando sin cambios",
+                  "Sientes un vacío interno que no sabes cómo llenar, aunque todo parezca estar bien por fuera",
+                  "Te preguntas «¿cómo saber quién soy realmente?» y no encuentras la respuesta",
+                  "Tienes miedo a equivocarte, miedo a no poder hacerlo, miedo a avanzar sin saber cómo",
+                  "Cargas heridas de la infancia que siguen afectando tus relaciones y tu autoestima hoy",
                 ].map((item, i) => (
                   <div key={i} className={styles.problemItem}>
                     <span className={styles.problemX}>✕</span>
@@ -118,10 +120,10 @@ function Home() {
               <h2 className={styles.sectionTitle}>El <span className={styles.gold}>Reto 33</span> — Así funciona</h2>
               <div className={styles.steps}>
                 {[
-                  { num: '01', title: 'Diagnóstico Personalizado', desc: "Desde el primer día identificas exactamente dónde estás y hacia dónde quieres ir. Nada genérico — un plan hecho a tu medida." },
-                  { num: '02', title: 'Método por Bloques', desc: "11 bloques de 3 días, cada uno enfocado en un aspecto puntual de tu transformación. Acción concreta cada día, sin agobios." },
-                  { num: '03', title: 'Comunidad Activa', desc: "Te unes a un grupo de personas con los mismos objetivos. La energía colectiva multiplica tus resultados de una forma brutal." },
-                  { num: '04', title: 'Cambio que Dura', desc: "Al día 33 no vuelves a cero. Los nuevos hábitos ya están grabados en ti y los resultados son permanentes. Eso es lo que buscamos." },
+                  { num: '01', title: 'Autoconocimiento Profundo', desc: "A través de ejercicios de introspección y numerología, descubres quién eres realmente — tus patrones, tus miedos, tu potencial. No hay test de personalidad más poderoso que este proceso." },
+                  { num: '02', title: 'Gestión Emocional e Inteligencia Emocional', desc: "Aprenderás a gestionar tus emociones con herramientas concretas — atención plena, meditación guiada y técnicas de psicología holística para sanar desde adentro." },
+                  { num: '03', title: 'Amor Propio y Autoestima', desc: "Trabajamos el amor propio, la autoestima y las heridas de la infancia en grupo. La energía colectiva acelera una transformación que sola llevaría años." },
+                  { num: '04', title: 'Cambio que Dura', desc: "Al día 33 los nuevos hábitos están grabados en ti. Superarás el miedo a manejar tu propia vida y el miedo a hacer dinero — los resultados son permanentes." },
                 ].map((step) => (
                   <div key={step.num} className={styles.step}>
                     <span className={styles.stepNum}>{step.num}</span>
@@ -134,7 +136,7 @@ function Home() {
               </div>
             </div>
             <div className={styles.sectionImageSide}>
-              <img src="/numeros.webp" alt="Numerología" className={styles.sectionImage} width="500" height="500" loading="lazy" />
+              <img src="/numeros.webp" alt="Numerología y autoconocimiento" className={styles.sectionImage} width="500" height="500" loading="lazy" />
             </div>
           </div>
         </div>
@@ -144,7 +146,7 @@ function Home() {
       <section className={styles.section} id="benefits">
         <div className="container">
           <p className={styles.sectionEyebrow}>Lo que recibes</p>
-          <h2 className={styles.sectionTitle}>Todo incluido para<br /><span className={styles.gold}>tu éxito</span></h2>
+          <h2 className={styles.sectionTitle}>Todo incluido para<br /><span className={styles.gold}>tu transformación</span></h2>
           <div className={styles.benefitsGrid}>
             {benefits.map((b) => (
               <div key={b.title} className={styles.benefitCard}>
@@ -188,9 +190,9 @@ function Home() {
               </ul>
               <div className={styles.bonusBox}>
                 <p className={styles.bonusLabel}>BONO ESPECIAL</p>
-                <img src="/libro.webp" alt="Diario Numerológico" className={styles.bonusImage} width="200" height="200" loading="lazy" />
+                <img src="/libro.webp" alt="Diario Numerológico PDF — diario personal de autoconocimiento" className={styles.bonusImage} width="200" height="200" loading="lazy" />
                 <p className={styles.bonusTitle}>📖 Diario Numerológico PDF</p>
-                <p className={styles.bonusSub}>Incluido sin costo adicional</p>
+                <p className={styles.bonusSub}>Tu diario personal de introspección — incluido sin costo adicional</p>
               </div>
               <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary} style={{ display: 'block', textAlign: 'center', marginTop: '2rem' }}>
                 Me uno al programa →
@@ -218,11 +220,11 @@ function Home() {
       <section className={styles.ctaFinal} id="contact">
         <div className={`container ${styles.ctaInner}`}>
           <p className={styles.sectionEyebrow}>La decisión es tuya</p>
-          <img src="/infinito.webp" alt="Infinito" className={styles.ctaImage} width="400" height="400" loading="lazy" />
+          <img src="/infinito.webp" alt="Transformación personal con numerología en Torrevieja" className={styles.ctaImage} width="400" height="400" loading="lazy" />
           <h2 className={styles.ctaTitle}>En 33 días,<br />todo puede cambiar</h2>
-          <p className={styles.ctaSub}>La única diferencia entre donde estás hoy y donde quieres estar es la decisión que tomas en este momento. No la sigas aplazando.</p>
+          <p className={styles.ctaSub}>Deja de preguntarte «¿por qué siento este vacío?» y empieza a construir la vida que mereces. El autoconocimiento, la gestión emocional y el amor propio no son un lujo — son tu derecho.</p>
           <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Quiero mi Plaza ahora →</a>
-          <p className={styles.ctaNote}>Garantía de devolución a 30 días · Acceso inmediato</p>
+          <p className={styles.ctaNote}>Garantía de devolución a 30 días · Acceso inmediato · Torrevieja y todo el mundo</p>
           <div className={styles.ctaShapes}>
             <svg className={`${styles.ctaShape} ${styles.ctaShapeGold}`} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="30" cy="30" r="26" stroke="currentColor" strokeWidth="3"/>
