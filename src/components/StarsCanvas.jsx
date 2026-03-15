@@ -39,7 +39,7 @@ export default function StarsCanvas() {
 
     function buildGalaxies() {
       return [
-        { cx: W*0.75, cy: H*0.80, r: W*0.12, angle: -0.6, rot: 0.0012, c: '190,160,255' },
+        { cx: W*0.92, cy: H*0.78, r: W*0.09, angle: -0.6, rot: 0.0012, c: '190,160,255' },
       ].map(g => {
         const arms = []
         for (let a = 0; a < 2; a++) {
