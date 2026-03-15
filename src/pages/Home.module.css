@@ -54,7 +54,7 @@
 
 /* ─── HERO ────────────────────────────────────────── */
 .hero { position: relative; padding: 5rem 0 7rem; overflow: hidden; }
-.heroInner { position: relative; z-index: 4; max-width: 700px; }
+.heroInner { position: relative; z-index: 4; max-width: 700px; margin: 0 auto; text-align: center; }
 .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-red-bright); text-shadow: 0 0 14px var(--color-red-glow); margin-bottom: 1.5rem; animation: fadeUp 0.7s ease both; }
 .heroTitle { font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 900; letter-spacing: 0.02em; margin-bottom: 1.5rem; animation: fadeUp 0.7s ease 0.1s both; color: #0d1b3e; }
 .heroSub { font-size: 1.05rem; color: #e8f0fa; text-shadow: 0 1px 4px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.4); max-width: 520px; margin-bottom: 2.5rem; line-height: 1.8; animation: fadeUp 0.7s ease 0.2s both; }
