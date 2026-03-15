@@ -223,7 +223,7 @@ function Home() {
           <img src="/infinito.webp" alt="Transformación personal con numerología en Torrevieja" className={styles.ctaImage} width="400" height="400" loading="lazy" />
           <h2 className={styles.ctaTitle}>En 33 días,<br />todo puede cambiar</h2>
           <p className={styles.ctaSub}>Deja de preguntarte «¿por qué siento este vacío?» y empieza a construir la vida que mereces. El autoconocimiento, la gestión emocional y el amor propio no son un lujo — son tu derecho.</p>
-          <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Empiza este Juego ahora →</a>
+          <a href="https://wa.me/34641899336?text=Hola%2C%20quiero%20unirme%20al%20Reto%2033%20%F0%9F%8C%9F" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>Empieza este Juego ahora →</a>
           <p className={styles.ctaNote}>Garantía de devolución a 30 días · Acceso inmediato · Torrevieja y todo el mundo</p>
           <div className={styles.ctaShapes}>
             <svg className={`${styles.ctaShape} ${styles.ctaShapeGold}`} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
