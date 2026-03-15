@@ -240,7 +240,7 @@
   position: relative;
   padding: 6rem 0;
   overflow: hidden;
-  min-height: 600px;
+  min-height: 700px;
   display: flex;
   align-items: center;
   background: rgba(255,255,255,0.08);
@@ -250,10 +250,12 @@
 }
 .numerosImage {
   position: absolute;
-  right: 0; top: 0; bottom: 0;
-  height: 100%; width: 55%;
-  object-fit: cover;
-  object-position: center center;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  object-position: right center;
   pointer-events: none;
   z-index: 1;
   mask-image:
