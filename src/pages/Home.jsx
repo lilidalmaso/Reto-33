@@ -52,8 +52,8 @@ function Home() {
         <div className={`container ${styles.heroInner}`}>
           <p className={styles.eyebrow}>⬡ Programa Exclusivo — Pazas Limitadas</p>
           <h1 className={styles.heroTitle}>
-            Transforma tu vida<br />
-            en <span className={styles.gold}>33 días</span>
+            Transforma<br />
+            tu vida <span className={styles.gold}>en 33 días</span>
           </h1>
           <p className={styles.heroSub}>
             El método intensivo que ya cambió la vida de más de 500 personas en Latinoamérica.
