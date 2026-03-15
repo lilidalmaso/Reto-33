@@ -53,7 +53,9 @@ function Home() {
           <p className={styles.eyebrow}>⬡ Programa Exclusivo — Pazas Limitadas</p>
           <h1 className={styles.heroTitle}>
             Transforma<br />
-            tu vida <span className={styles.gold}>en 33 días</span>
+            tu vida<br />
+            en...<br />
+            <span className={styles.gold}>33 días</span>
           </h1>
           <p className={styles.heroSub}>
             El método intensivo que ya cambió la vida de más de 500 personas en Latinoamérica.
@@ -79,64 +81,52 @@ function Home() {
       </div>
 
       {/* PROBLEMA */}
-      <section className={styles.section} id="problem">
-        <div className="container">
-          <div className={styles.sectionWithImage}>
-            <div className={styles.sectionImageSide}>
-              <img src="/relo.webp" alt="El tiempo pasa" className={styles.sectionImage} width="500" height="500" loading="lazy" />
-            </div>
-            <div className={styles.sectionContentSide}>
-              <p className={styles.sectionEyebrow}>¿Te identificas con alguno de estos?</p>
-              <h2 className={styles.sectionTitle}>Llevas demasiado tiempo<br /><span className={styles.red}>sin avanzar de verdad</span></h2>
-              <div className={styles.problemGrid}>
-                {[
-                  "Sabes lo que quieres pero no sabes por dónde empezar ni cómo arrancar",
-                  "Ya probaste métodos que no funcionaron y no quieres volver a equivocarte",
-                  "Te sientes solo frente a tus metas y nadie a tu alrededor te entiende",
-                  "Cada semana parece igual a la anterior y el tiempo sigue pasando sin cambios",
-                ].map((item, i) => (
-                  <div key={i} className={styles.problemItem}>
-                    <span className={styles.problemX}>✕</span>
-                    <p>{item}</p>
-                  </div>
-                ))}
+      <section className={styles.sectionRelo} id="problem">
+        <img src="/relo.webp" alt="El tiempo pasa" className={styles.reloImage} width="800" height="800" loading="lazy" aria-hidden="true" />
+        <div className={`container ${styles.reloInner}`}>
+          <p className={styles.sectionEyebrow}>¿Te identificas con alguno de estos?</p>
+          <h2 className={styles.sectionTitle}>Llevas demasiado tiempo<br /><span className={styles.red}>sin avanzar de verdad</span></h2>
+          <div className={styles.problemGrid}>
+            {[
+              "Sabes lo que quieres pero no sabes por dónde empezar ni cómo arrancar",
+              "Ya probaste métodos que no funcionaron y no quieres volver a equivocarte",
+              "Te sientes solo frente a tus metas y nadie a tu alrededor te entiende",
+              "Cada semana parece igual a la anterior y el tiempo sigue pasando sin cambios",
+            ].map((item, i) => (
+              <div key={i} className={styles.problemItem}>
+                <span className={styles.problemX}>✕</span>
+                <p>{item}</p>
               </div>
-              <p className={styles.problemClose}>
-                Si te identificas con al menos uno de estos puntos,<br />
-                este programa fue creado <span className={styles.gold}>exactamente para ti.</span>
-              </p>
-            </div>
+            ))}
           </div>
+          <p className={styles.problemClose}>
+            Si te identificas con al menos uno de estos puntos,<br />
+            este programa fue creado <span className={styles.gold}>exactamente para ti.</span>
+          </p>
         </div>
       </section>
 
       {/* SOLUCIÓN */}
-      <section className={`${styles.section} ${styles.sectionDark}`} id="program">
-        <div className="container">
-          <div className={styles.sectionWithImageReverse}>
-            <div className={styles.sectionContentSide}>
-              <p className={styles.sectionEyebrow}>La solución</p>
-              <h2 className={styles.sectionTitle}>El <span className={styles.gold}>Reto 33</span> — Así funciona</h2>
-              <div className={styles.steps}>
-                {[
-                  { num: '01', title: 'Diagnóstico Personalizado', desc: "Desde el primer día identificas exactamente dónde estás y hacia dónde quieres ir. Nada genérico — un plan hecho a tu medida." },
-                  { num: '02', title: 'Método por Bloques', desc: "11 bloques de 3 días, cada uno enfocado en un aspecto puntual de tu transformación. Acción concreta cada día, sin agobios." },
-                  { num: '03', title: 'Comunidad Activa', desc: "Te unes a un grupo de personas con los mismos objetivos. La energía colectiva multiplica tus resultados de una forma brutal." },
-                  { num: '04', title: 'Cambio que Dura', desc: "Al día 33 no vuelves a cero. Los nuevos hábitos ya están grabados en ti y los resultados son permanentes. Eso es lo que buscamos." },
-                ].map((step) => (
-                  <div key={step.num} className={styles.step}>
-                    <span className={styles.stepNum}>{step.num}</span>
-                    <div>
-                      <h3 className={styles.stepTitle}>{step.title}</h3>
-                      <p className={styles.stepDesc}>{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
+      <section className={styles.sectionNumeros} id="program">
+        <img src="/numeros.webp" alt="Numerología y método Reto 33" className={styles.numerosImage} width="800" height="800" loading="lazy" aria-hidden="true" />
+        <div className={`container ${styles.numerosInner}`}>
+          <p className={styles.sectionEyebrow}>La solución</p>
+          <h2 className={styles.sectionTitle}>El <span className={styles.gold}>Reto 33</span> — Así funciona</h2>
+          <div className={styles.steps}>
+            {[
+              { num: '01', title: 'Diagnóstico Personalizado', desc: "Desde el primer día identificas exactamente dónde estás y hacia dónde quieres ir. Nada genérico — un plan hecho a tu medida." },
+              { num: '02', title: 'Método por Bloques', desc: "11 bloques de 3 días, cada uno enfocado en un aspecto puntual de tu transformación. Acción concreta cada día, sin agobios." },
+              { num: '03', title: 'Comunidad Activa', desc: "Te unes a un grupo de personas con los mismos objetivos. La energía colectiva multiplica tus resultados de una forma brutal." },
+              { num: '04', title: 'Cambio que Dura', desc: "Al día 33 no vuelves a cero. Los nuevos hábitos ya están grabados en ti y los resultados son permanentes. Eso es lo que buscamos." },
+            ].map((step) => (
+              <div key={step.num} className={styles.step}>
+                <span className={styles.stepNum}>{step.num}</span>
+                <div>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <p className={styles.stepDesc}>{step.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className={styles.sectionImageSide}>
-              <img src="/numeros.webp" alt="Numerología" className={styles.sectionImage} width="500" height="500" loading="lazy" />
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -198,6 +188,22 @@ function Home() {
               </a>
               <p className={styles.pricingGuarantee}>🔒 Garantía de 7 días sin condiciones</p>
             </div>
+
+            {/* Photo Karla — cadre argenté */}
+            <div className={styles.karlaFrame}>
+              <div className={styles.karlaImgWrapper}>
+                <img src="/karla.webp" alt="Karla — Coach de Numerología y Desarrollo Personal" className={styles.karlaImg} width="400" height="500" loading="lazy" />
+              </div>
+              <div className={styles.karlaBio}>
+                <p className={styles.karlaBioName}>✦ Karla ✦</p>
+                <p className={styles.karlaBioText}>
+                  Coach de numerología, psicología y desarrollo personal.
+                  Más de 10 años acompañando personas a descubrir quiénes son realmente
+                  y a construir la vida que merecen — desde Torrevieja para todo el mundo.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

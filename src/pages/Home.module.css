@@ -108,8 +108,8 @@
 .benefitDesc { font-size: 0.88rem; line-height: 1.75; }
 
 /* ─── PRICING ─────────────────────────────────────── */
-.pricingWrapper { display: flex; justify-content: center; }
-.pricingCard { max-width: 480px; width: 100%; padding: 2.5rem; border: 1px solid rgba(240,192,64,0.45) !important; box-shadow: 0 0 40px rgba(240,192,64,0.12), 0 8px 40px rgba(0,20,80,0.15); position: relative; }
+.pricingWrapper { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; width: 100%; }
+.pricingCard { max-width: 440px; width: 100%; flex: 1; padding: 2.5rem; border: 1px solid rgba(240,192,64,0.45) !important; box-shadow: 0 0 40px rgba(240,192,64,0.12), 0 8px 40px rgba(0,20,80,0.15); position: relative; }
 .pricingBadge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #b30000; color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 20px; box-shadow: 0 0 16px var(--color-red-glow); white-space: nowrap; }
 .pricingName { text-align: center; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.65; margin-bottom: 1.5rem; margin-top: 0.5rem; }
 .pricingPrice { display: flex; align-items: flex-end; justify-content: center; gap: 4px; margin-bottom: 0.4rem; }
@@ -155,7 +155,8 @@
 .sectionWithImageReverse { direction: rtl; }
 .sectionWithImageReverse > * { direction: ltr; }
 .sectionImageSide { position: relative; }
-.sectionImage { width: 100%; max-width: 420px; border-radius: 12px; object-fit: cover; box-shadow: 0 16px 50px rgba(0,20,80,0.3), 0 0 0 1px rgba(255,255,255,0.1); display: block; margin: 0 auto; }
+.sectionImage:hover { opacity: 1; mix-blend-mode: normal; }
+.sectionImage { width: 100%; max-width: 420px; border-radius: 12px; object-fit: cover; display: block; margin: 0 auto; mix-blend-mode: luminosity; opacity: 0.88; mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, rgba(0,0,0,1) 40%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, rgba(0,0,0,1) 40%, transparent 100%); transition: opacity var(--transition); }
 .bonusImage { width: 120px; height: 120px; object-fit: cover; border-radius: 10px; margin: 0 auto 1rem; display: block; box-shadow: 0 8px 24px rgba(0,20,80,0.25), 0 0 20px rgba(240,192,64,0.15); }
 .ctaImage { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; margin: 0 auto; display: block; box-shadow: 0 0 30px rgba(240,192,64,0.25), 0 0 60px rgba(240,192,64,0.1); animation: pulseGold 4s ease-in-out infinite; }
 
@@ -192,4 +193,168 @@
   .pricingCard { padding: 1.8rem 1.4rem; }
   .step { flex-direction: column; gap: 0.8rem; }
   .stepNum { font-size: 1.6rem; width: auto; }
+}
+
+
+
+/* ─── SECTION RELO ───────────────────────────────── */
+.sectionRelo {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+.reloImage {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  height: 100%; width: 50%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  z-index: 1;
+  mask-image:
+    linear-gradient(to right, rgba(0,0,0,1) 20%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(to right, rgba(0,0,0,1) 20%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.reloInner {
+  position: relative;
+  z-index: 2;
+  margin-left: 50%;
+  max-width: 550px;
+}
+
+@media (max-width: 768px) {
+  .reloImage { display: none; }
+  .reloInner { margin-left: 0; max-width: 100%; }
+}
+
+/* ─── SECTION NUMEROS ────────────────────────────── */
+.sectionNumeros {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+}
+.numerosImage {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  height: 100%; width: 55%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  z-index: 1;
+  mask-image:
+    linear-gradient(to left, rgba(0,0,0,1) 50%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(to left, rgba(0,0,0,1) 50%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.numerosInner {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  margin-right: 50%;
+}
+
+@media (max-width: 768px) {
+  .numerosImage { display: none; }
+  .numerosInner { max-width: 100%; }
+}
+
+/* ─── KARLA FRAME ────────────────────────────────── */
+.karlaFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  min-width: 280px;
+  width: 100%;
+  flex: 0 0 340px;
+}
+.karlaImgWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  padding: 4px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.95) 0%,
+    rgba(200,205,215,0.8) 25%,
+    rgba(150,155,165,0.7) 50%,
+    rgba(210,215,225,0.85) 75%,
+    rgba(255,255,255,0.95) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.5),
+    0 8px 32px rgba(0,20,80,0.25),
+    0 0 20px rgba(200,210,230,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.karlaImgWrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0.6) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(255,255,255,0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+.karlaImg {
+  width: 100%;
+  border-radius: 13px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  height: 380px;
+}
+.karlaBio {
+  margin-top: 1.2rem;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  text-align: center;
+  width: 100%;
+}
+.karlaBioName {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-bright);
+  text-shadow: 0 0 12px var(--color-gold-glow);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.7rem;
+}
+.karlaBioText {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  opacity: 0.82;
+  color: #e8f0fa;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+  .karlaFrame { max-width: 100%; }
 }

@@ -18,6 +18,16 @@ export default function BubblesCanvas() {
 
     const NUMBERS = ['1','2','3','4','5','6','7','8','9','11','22','33']
 
+    // Palette argent — tons neutres froids
+    const SILVER_COLORS = [
+      { h: 210, s: 8,  l: 88 },
+      { h: 215, s: 6,  l: 82 },
+      { h: 205, s: 10, l: 90 },
+      { h: 220, s: 5,  l: 85 },
+      { h: 200, s: 12, l: 87 },
+      { h: 210, s: 7,  l: 92 },
+    ]
+
     function spawnPopParticles(cx, cy, r, col) {
       const count = Math.floor(8 + r * 0.4)
       for (let i = 0; i < count; i++) {
@@ -35,10 +45,8 @@ export default function BubblesCanvas() {
       particles.push({
         x: cx, y: cy,
         ring: true,
-        r: r * 0.8,
-        maxR: r * 2.2,
-        col, alpha: 0.7,
-        decay: 0.04,
+        r: r * 0.8, maxR: r * 2.2,
+        col, alpha: 0.7, decay: 0.04,
       })
     }
 
@@ -54,86 +62,44 @@ export default function BubblesCanvas() {
       clearTimeout(idleTimer)
       const sorted = [...bubbles].filter(b => !b.popping)
       sorted.sort((a, b) => a.y - b.y)
-      sorted.forEach((b, i) => {
-        setTimeout(() => popBubble(b), i * 80)
-      })
-      const totalDelay = sorted.length * 80 + 800
+      sorted.forEach((b, i) => setTimeout(() => popBubble(b), i * 80))
       state = 'popping'
-      setTimeout(() => {
-        bubbles = []
-        state = 'hidden'
-        idleTimer = setTimeout(triggerSpawn, IDLE_DELAY)
-      }, totalDelay)
+      setTimeout(() => { bubbles = []; state = 'idle' }, sorted.length * 80 + 800)
     }
 
-    function triggerSpawn() {
-      if (state !== 'hidden') return
-      state = 'spawning'
-      let count = 0
-      const total = 11
-      const interval = setInterval(() => {
-        if (count >= total) { clearInterval(interval); state = 'idle'; return }
-        bubbles.push(mkBubble(false))
-        count++
-      }, 11)
-    }
-
-    // ── Gestion des clics ────────────────────────────────────────────────────
     function handleClick(e) {
-      if (state === 'hidden') {
-        clearTimeout(idleTimer)
-        idleTimer = setTimeout(triggerSpawn, IDLE_DELAY)
-        return
-      }
-
+      if (state === 'hidden') return
       const clientX = e.clientX ?? e.touches?.[0]?.clientX
       const clientY = e.clientY ?? e.touches?.[0]?.clientY
-
       if (clientX === undefined) { triggerPopAll(); return }
-
-      // Cherche une bulle sous le curseur
       let hitBubble = null
       for (const b of bubbles) {
         if (b.popping) continue
-        const dx = b.x - clientX
-        const dy = b.y - clientY
-        if (Math.sqrt(dx*dx + dy*dy) <= b.r) {
-          hitBubble = b
-          break
-        }
+        const dx = b.x - clientX, dy = b.y - clientY
+        if (Math.sqrt(dx*dx + dy*dy) <= b.r) { hitBubble = b; break }
       }
-
-      if (hitBubble) {
-        // Clic direct sur une bulle → pop individuel
-        popBubble(hitBubble)
-      } else {
-        // Clic ailleurs (bouton, lien, n'importe où) → pop toutes
-        triggerPopAll()
-      }
+      if (hitBubble) popBubble(hitBubble)
+      else triggerPopAll()
     }
 
-    // Écoute sur window pour capturer TOUS les clics (boutons, liens, partout)
-    window.addEventListener('click', handleClick)
-    window.addEventListener('touchstart', handleClick, { passive: true })
-
-    // ── Curseur intelligent : pointer si bulle sous la souris ────────────────
     function handleMouseMove(e) {
       let onBubble = false
       for (const b of bubbles) {
         if (b.popping) continue
-        const dx = b.x - e.clientX
-        const dy = b.y - e.clientY
+        const dx = b.x - e.clientX, dy = b.y - e.clientY
         if (Math.sqrt(dx*dx + dy*dy) <= b.r) { onBubble = true; break }
       }
       canvasBg.style.pointerEvents = onBubble ? 'auto' : 'none'
       canvasBg.style.cursor = onBubble ? 'pointer' : 'default'
     }
+
+    window.addEventListener('click', handleClick)
+    window.addEventListener('touchstart', handleClick, { passive: true })
     window.addEventListener('mousemove', handleMouseMove)
 
     function getNavbarHeight() {
       const nav = document.querySelector('header')
-      if (nav) return nav.getBoundingClientRect().bottom
-      return 64
+      return nav ? nav.getBoundingClientRect().bottom : 64
     }
 
     function resize() {
@@ -143,23 +109,11 @@ export default function BubblesCanvas() {
     resize()
     window.addEventListener('resize', resize)
 
-    const WIN7_COLORS = [
-      { h: 300, s: 70, l: 72 },
-      { h: 280, s: 75, l: 68 },
-      { h: 195, s: 80, l: 65 },
-      { h: 170, s: 75, l: 62 },
-      { h: 110, s: 65, l: 62 },
-      { h: 55,  s: 85, l: 65 },
-      { h: 330, s: 70, l: 70 },
-      { h: 0,   s: 65, l: 72 },
-    ]
-
     function mkBubble(randomY = false) {
       const r = 22 + Math.random() * 45
-      const col = WIN7_COLORS[Math.floor(Math.random() * WIN7_COLORS.length)]
+      const col = SILVER_COLORS[Math.floor(Math.random() * SILVER_COLORS.length)]
       const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.5
       const speed = 2.5 + Math.random() * 1.5
-      const number = NUMBERS[Math.floor(Math.random() * NUMBERS.length)]
       return {
         x: r + Math.random() * (W - r * 2),
         y: randomY ? Math.random() * H : H + r + Math.random() * 50,
@@ -168,96 +122,83 @@ export default function BubblesCanvas() {
         wobbleSpeed: 0.008 + Math.random() * 0.01,
         wobbleAmp: 0.3 + Math.random() * 0.4,
         popping: false, popProgress: 0,
-        number,
+        number: NUMBERS[Math.floor(Math.random() * NUMBERS.length)],
       }
     }
-
-    for (let i = 0; i < 11; i++) bubbles.push(mkBubble(true))
 
     function drawBubble(ctx, cx, cy, r, col, alpha, number) {
       if (alpha === undefined) alpha = 1
       const { h, s, l } = col
       ctx.save()
 
+      // Corps — argent translucide avec dégradé radial
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
-      const body = ctx.createRadialGradient(cx, cy - r*0.2, r*0.1, cx, cy + r*0.3, r)
-      body.addColorStop(0,   'hsla('+h+','+s+'%,'+(l+20)+'%,'+(0.15*alpha)+')')
-      body.addColorStop(0.7, 'hsla('+h+','+s+'%,'+l+'%,'+(0.22*alpha)+')')
-      body.addColorStop(1,   'hsla('+h+','+s+'%,'+(l-10)+'%,'+(0.35*alpha)+')')
+      const body = ctx.createRadialGradient(cx - r*0.3, cy - r*0.3, 0, cx, cy, r)
+      body.addColorStop(0,   `hsla(${h},${s}%,${l+8}%,${0.55*alpha})`)
+      body.addColorStop(0.5, `hsla(${h},${s}%,${l}%,${0.30*alpha})`)
+      body.addColorStop(1,   `hsla(${h},${s}%,${l-12}%,${0.50*alpha})`)
       ctx.fillStyle = body
       ctx.fill()
 
+      // Bordure argent irisée
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
-      const bG = ctx.createLinearGradient(cx-r, cy-r, cx+r, cy+r)
-      bG.addColorStop(0,   'hsla('+h+','+s+'%,'+(l+15)+'%,'+(0.9*alpha)+')')
-      bG.addColorStop(0.3, 'hsla('+((h+40)%360)+','+s+'%,'+(l+10)+'%,'+(0.75*alpha)+')')
-      bG.addColorStop(0.6, 'hsla('+((h+90)%360)+','+s+'%,'+l+'%,'+(0.65*alpha)+')')
-      bG.addColorStop(1,   'hsla('+((h+160)%360)+','+s+'%,'+(l-5)+'%,'+(0.8*alpha)+')')
-      ctx.strokeStyle = bG
-      ctx.lineWidth = Math.max(1.5, r * 0.045)
+      const border = ctx.createLinearGradient(cx-r, cy-r, cx+r, cy+r)
+      border.addColorStop(0,    `hsla(${h},${s}%,98%,${0.95*alpha})`)
+      border.addColorStop(0.25, `hsla(${h},${s}%,${l+5}%,${0.85*alpha})`)
+      border.addColorStop(0.5,  `hsla(${h},${s}%,${l-5}%,${0.75*alpha})`)
+      border.addColorStop(0.75, `hsla(${h},${s}%,${l+8}%,${0.85*alpha})`)
+      border.addColorStop(1,    `hsla(${h},${s}%,98%,${0.95*alpha})`)
+      ctx.strokeStyle = border
+      ctx.lineWidth = Math.max(0.5, r * 0.018)
       ctx.stroke()
 
+      // Reflet principal — brillance haut gauche
       ctx.save()
       ctx.beginPath()
-      ctx.arc(cx, cy, r * 0.98, 0, Math.PI * 2)
+      ctx.arc(cx, cy, r * 0.97, 0, Math.PI * 2)
       ctx.clip()
       ctx.save()
-      ctx.translate(cx - r*0.28, cy - r*0.28)
+      ctx.translate(cx - r*0.3, cy - r*0.3)
       ctx.rotate(-Math.PI / 5)
-      ctx.scale(1, 0.55)
-      const reflet = ctx.createRadialGradient(0, 0, 0, 0, 0, r*0.38)
-      reflet.addColorStop(0,    'rgba(255,255,255,'+(0.85*alpha)+')')
-      reflet.addColorStop(0.4,  'rgba(255,255,255,'+(0.45*alpha)+')')
-      reflet.addColorStop(0.75, 'rgba(255,255,255,'+(0.1*alpha)+')')
+      ctx.scale(1, 0.5)
+      const reflet = ctx.createRadialGradient(0, 0, 0, 0, 0, r*0.45)
+      reflet.addColorStop(0,    `rgba(255,255,255,${0.92*alpha})`)
+      reflet.addColorStop(0.35, `rgba(255,255,255,${0.50*alpha})`)
+      reflet.addColorStop(0.7,  `rgba(255,255,255,${0.12*alpha})`)
       reflet.addColorStop(1,    'rgba(255,255,255,0)')
       ctx.fillStyle = reflet
       ctx.beginPath()
-      ctx.arc(0, 0, r*0.38, 0, Math.PI * 2)
+      ctx.arc(0, 0, r*0.45, 0, Math.PI * 2)
       ctx.fill()
       ctx.restore()
       ctx.restore()
 
+      // Petit reflet spéculaire
       ctx.save()
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
       ctx.clip()
-      const spec = ctx.createRadialGradient(cx-r*0.5, cy-r*0.45, 0, cx-r*0.5, cy-r*0.45, r*0.1)
-      spec.addColorStop(0,   'rgba(255,255,255,'+(0.95*alpha)+')')
-      spec.addColorStop(0.5, 'rgba(255,255,255,'+(0.4*alpha)+')')
+      const spec = ctx.createRadialGradient(cx-r*0.48, cy-r*0.42, 0, cx-r*0.48, cy-r*0.42, r*0.12)
+      spec.addColorStop(0,   `rgba(255,255,255,${0.98*alpha})`)
+      spec.addColorStop(0.5, `rgba(255,255,255,${0.45*alpha})`)
       spec.addColorStop(1,   'rgba(255,255,255,0)')
       ctx.fillStyle = spec
       ctx.fillRect(cx-r, cy-r, r*2, r*2)
       ctx.restore()
 
-      ctx.save()
-      ctx.beginPath()
-      ctx.arc(cx, cy, r, 0, Math.PI * 2)
-      ctx.clip()
-      const shad = ctx.createRadialGradient(cx, cy+r*0.6, 0, cx, cy+r*0.6, r*0.8)
-      shad.addColorStop(0, 'hsla('+h+','+s+'%,20%,'+(0.12*alpha)+')')
-      shad.addColorStop(1, 'rgba(0,0,0,0)')
-      ctx.fillStyle = shad
-      ctx.fillRect(cx-r, cy-r, r*2, r*2)
-      ctx.restore()
-
+      // Numéro en noir
       if (number && r > 20) {
-        const fontSize = Math.max(10, r * 0.52)
+        const fontSize = Math.max(10, r * 0.48)
         ctx.save()
-        ctx.font = `900 ${fontSize}px "Palatino Linotype", Palatino, Georgia, serif`
+        ctx.font = `700 ${fontSize}px "Palatino Linotype", Palatino, Georgia, serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.shadowColor = 'rgba(240, 192, 64, 0.9)'
-        ctx.shadowBlur = r * 0.4
-        const goldGrad = ctx.createLinearGradient(cx, cy - fontSize*0.5, cx, cy + fontSize*0.5)
-        goldGrad.addColorStop(0,   `rgba(255,245,180,${0.98*alpha})`)
-        goldGrad.addColorStop(0.3, `rgba(255,215,50,${0.95*alpha})`)
-        goldGrad.addColorStop(0.6, `rgba(240,160,10,${0.9*alpha})`)
-        goldGrad.addColorStop(1,   `rgba(255,220,80,${0.95*alpha})`)
-        ctx.fillStyle = goldGrad
-        ctx.fillText(number, cx, cy + fontSize*0.05)
-
+        ctx.shadowColor = 'rgba(255,255,255,0.6)'
+        ctx.shadowBlur = r * 0.15
+        ctx.fillStyle = `rgba(15,15,20,${alpha * 0.85})`
+        ctx.fillText(number, cx, cy + fontSize * 0.05)
         ctx.restore()
       }
 
@@ -275,69 +216,49 @@ export default function BubblesCanvas() {
           ctx.beginPath()
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
           ctx.strokeStyle = `hsla(${h},${s}%,${l+10}%,${p.alpha})`
-          ctx.lineWidth = 2
+          ctx.lineWidth = 1.5
           ctx.stroke()
           ctx.restore()
           return true
         }
-        p.x += p.vx
-        p.y += p.vy
-        p.vy += 0.04
-        p.vx *= 0.98
+        p.x += p.vx; p.y += p.vy
+        p.vy += 0.04; p.vx *= 0.98
         p.alpha -= p.decay
         if (p.alpha <= 0) return false
-        const { h, s, l } = p.col
         ctx.save()
         ctx.globalAlpha = p.alpha
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        const g = ctx.createRadialGradient(p.x - p.size*0.3, p.y - p.size*0.3, 0, p.x, p.y, p.size)
-        g.addColorStop(0, `hsla(${h},${s}%,${l+25}%,1)`)
-        g.addColorStop(0.5, `hsla(${h},${s}%,${l}%,0.8)`)
-        g.addColorStop(1, `hsla(${h},${s}%,${l-10}%,0.3)`)
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size)
+        g.addColorStop(0, 'rgba(255,255,255,1)')
+        g.addColorStop(0.5, `hsla(${p.col.h},${p.col.s}%,${p.col.l}%,0.8)`)
+        g.addColorStop(1, 'rgba(200,205,215,0)')
         ctx.fillStyle = g
-        ctx.fill()
-        ctx.fillStyle = `rgba(255,255,255,0.7)`
-        ctx.beginPath()
-        ctx.arc(p.x - p.size*0.3, p.y - p.size*0.3, p.size * 0.25, 0, Math.PI * 2)
         ctx.fill()
         ctx.restore()
         return true
       })
     }
 
-
-    // ── Collisions entre bulles ──────────────────────────────────────────────
     function resolveBubbleCollisions() {
       for (let i = 0; i < bubbles.length; i++) {
         for (let j = i + 1; j < bubbles.length; j++) {
-          const a = bubbles[i]
-          const b = bubbles[j]
+          const a = bubbles[i], b = bubbles[j]
           if (a.popping || b.popping) continue
-          const dx = b.x - a.x
-          const dy = b.y - a.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
+          const dx = b.x - a.x, dy = b.y - a.y
+          const dist = Math.sqrt(dx*dx + dy*dy)
           const minDist = a.r + b.r
           if (dist < minDist && dist > 0) {
-            // Vecteur de répulsion normalisé
-            const nx = dx / dist
-            const ny = dy / dist
+            const nx = dx/dist, ny = dy/dist
             const overlap = (minDist - dist) * 0.5
-            // Séparer les bulles
-            a.x -= nx * overlap
-            a.y -= ny * overlap
-            b.x += nx * overlap
-            b.y += ny * overlap
-            // Échanger les composantes de vitesse sur l'axe de collision
-            const dvx = a.vx - b.vx
-            const dvy = a.vy - b.vy
-            const dot = dvx * nx + dvy * ny
+            a.x -= nx*overlap; a.y -= ny*overlap
+            b.x += nx*overlap; b.y += ny*overlap
+            const dvx = a.vx-b.vx, dvy = a.vy-b.vy
+            const dot = dvx*nx + dvy*ny
             if (dot > 0) {
-              const impulse = dot * 0.85
-              a.vx -= impulse * nx
-              a.vy -= impulse * ny
-              b.vx += impulse * nx
-              b.vy += impulse * ny
+              const imp = dot * 0.85
+              a.vx -= imp*nx; a.vy -= imp*ny
+              b.vx += imp*nx; b.vy += imp*ny
             }
           }
         }
@@ -362,29 +283,16 @@ export default function BubblesCanvas() {
         if (b.popping) {
           b.popProgress += 0.07
           if (b.popProgress >= 1) return false
-          const scale = 1 + b.popProgress * 0.15
-          const alpha = 1 - b.popProgress
-          drawBubble(ctx, b.x, b.y, b.r * scale, b.col, alpha, b.number)
+          drawBubble(ctx, b.x, b.y, b.r * (1 + b.popProgress*0.15), b.col, 1 - b.popProgress, b.number)
           return true
         }
-
         b.wobblePhase += b.wobbleSpeed
         b.x += b.vx + Math.sin(b.wobblePhase) * b.wobbleAmp * 0.08
         b.y += b.vy
-
-        if (b.y - b.r <= navH) {
-          popBubble(b)
-          return true
-        }
-
-        if (b.y + b.r < -10) {
-          if (state === 'idle') { Object.assign(b, mkBubble(false)) }
-          else { return false }
-        }
-
+        if (b.y - b.r <= navH) { popBubble(b); return true }
+        if (b.y + b.r < -10) { if (state === 'idle') { Object.assign(b, mkBubble(false)) } else return false }
         if (b.x - b.r < 0)  { b.x = b.r;     b.vx =  Math.abs(b.vx) * 0.6 }
         if (b.x + b.r > W)  { b.x = W - b.r; b.vx = -Math.abs(b.vx) * 0.6 }
-
         drawBubble(ctx, b.x, b.y, b.r, b.col, 1, b.number)
         return true
       })
@@ -407,14 +315,12 @@ export default function BubblesCanvas() {
   return (
     <canvas
       ref={canvasBgRef}
-      id="bubblesCanvas"
       style={{
         position: 'fixed', inset: 0,
         width: '100vw', height: '100vh',
         pointerEvents: 'none',
         zIndex: 500,
         mixBlendMode: 'screen',
-
       }}
     />
   )
