@@ -35,7 +35,7 @@
   box-shadow: 0 0 30px var(--color-gold-glow), 0 0 70px rgba(240,192,64,0.4), 0 0 130px rgba(240,192,64,0.2), inset 0 0 40px rgba(240,192,64,0.08);
   animation: pulseGold 4s ease-in-out infinite;
 }
-.shapeTriangle { width: 280px; height: 250px; top: 38%; right: 1%; }
+.shapeTriangle { width: 280px; height: 250px; top: 38%; right: 1%; transform: rotate(180deg); }
 .shapeTriangle::after {
   content: ''; position: absolute; inset: 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 250'%3E%3Cpolygon points='140,6 274,244 6,244' fill='none' stroke='%23ff2020' stroke-width='6'/%3E%3C/svg%3E") no-repeat center / contain;

@@ -199,7 +199,7 @@ function Home() {
                 <p className={styles.karlaBioText}>
                   Coach de numerología, psicología y desarrollo personal.
                   Más de 10 años acompañando personas a descubrir quiénes son realmente
-                  y a construir la vida que merecen — desde Torrevieja para todo el mundo.
+                  y a construir la vida que merecen — Ahora, desde Torrevieja para todo el mundo.
                 </p>
               </div>
             </div>
