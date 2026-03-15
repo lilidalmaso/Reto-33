@@ -50,7 +50,7 @@ function Home() {
           <div className={`${styles.shape} ${styles.shapeSquare}`} />
         </div>
         <div className={`container ${styles.heroInner}`}>
-          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Pazas Limitadas</p>
+          <p className={styles.eyebrow}>⬡ Programa Exclusivo — Plazas Limitadas</p>
           <h1 className={styles.heroTitle}>
             Transforma<br />
             tu vida<br />
